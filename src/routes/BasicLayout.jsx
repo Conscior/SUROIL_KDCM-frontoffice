@@ -42,18 +42,6 @@ const BasicLayout = () => {
     
   }, [user, dispatch, refresh]);
 
-  // useEffect(() => {
-  // const refreshToken = async () => {
-  //   const { accessToken, userInfo } = await refresh().unwrap();
-  //   if (accessToken && userInfo) {
-  //     dispatch(setCredentials({ accessToken, userInfo }));
-  //   }
-  // };
-
-  //   // refreshToken();
-  //   dispatch(setCredentials({ accessToken: '789', userInfo: {email: "t@gmail.com"} }));
-  // });
-
   return (
     <>
       <Flex direction='column' flex='1'>

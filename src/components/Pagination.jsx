@@ -12,7 +12,7 @@ const Pagination = ({
     pages.push(i);
   }
   return (
-    <Box textAlign='center'>
+    <Box textAlign='center' py={5}>
       <ButtonGroup colorScheme='red' spacing={2}>
         {pages.map((page, index) => {
           return (
@@ -20,7 +20,7 @@ const Pagination = ({
               key={index}
               variant={currentPage === page ? "solid" : "outline"}
               onClick={() => {
-                window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+                window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
                 setCurrentPage(page);
               }}>
               {page}

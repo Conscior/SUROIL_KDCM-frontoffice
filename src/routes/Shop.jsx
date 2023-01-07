@@ -1,12 +1,8 @@
 import {
   SimpleGrid,
-  Skeleton,
   SkeletonCircle,
   SkeletonText,
   Box,
-  Flex,
-  Text,
-  HStack,
   IconButton,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -50,7 +46,9 @@ const Shop = () => {
       <SimpleGrid
         columns={{ base: "1", md: "3", lg: "4" }}
         columnGap={{ sm: "4", md: "6", lg: "4" }}
-        rowGap={{ base: "8", md: "10" }}>
+        rowGap={{ base: "8", md: "10" }}
+        px='10'
+        py='10'>
         <Box padding='6' boxShadow='lg' bg='white'>
           <SkeletonCircle size='10' />
           <SkeletonText mt='4' noOfLines={4} spacing='4' />
@@ -71,24 +69,23 @@ const Shop = () => {
     );
   } else if (isSuccess) {
     content = (
-      <>
+      <Box px='10'>
         {/* <CategoriesBar /> */}
         <IconButton
           variant={"outline"}
           size={"lg"}
           color={"primary"}
           w={"50px"}
-          mb={"5"}
+          // mb={"5"}
           icon={<BsFilter />}
           onClick={onProductFilterOpen}
         />
         <SimpleGrid
-          // p={50}
           columns={{ base: "1", md: "3", lg: "4" }}
-          // columns={[2, null, 3]}
-          // minChildWidth='220px'
           columnGap={{ sm: "4", md: "6", lg: "4" }}
-          rowGap={{ base: "8", md: "10" }}>
+          rowGap={{ base: "8", md: "10" }}
+          py='5'
+          >
           {products?.slice(firstProductIndex, lastProductIndex).map((item) => (
             <ProductCard key={item.id} product={item} />
           ))}
@@ -104,10 +101,14 @@ const Shop = () => {
           onClose={onProductFilterClose}
           setProductFilter={setProductFilter}
         />
-      </>
+      </Box>
     );
   } else if (isError) {
-    content = <div>{error.data.message.toString()}</div>;
+    if (error.data) {
+      content = <div>{error.data.message.toString()}</div>;
+    } else {
+      content = <div>{error.error.toString()}</div>;
+    }
   }
 
   return <>{content}</>;

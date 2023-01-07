@@ -125,9 +125,9 @@ const ProductFilter = ({ isOpen, onClose, setProductFilter }) => {
               value={category3}
               onChange={handleFilterChange}
               placeholder='Selectionner une categorie'
-              // {...(category1 && category2
-              //   ? {}
-              //   : { hidden: true, icon: false })}
+              {...(category1 && category2
+                ? {}
+                : { hidden: true, icon: false })}
                 >
               {categories
                 ?.filter((category) => category.parent === category2)
@@ -142,9 +142,9 @@ const ProductFilter = ({ isOpen, onClose, setProductFilter }) => {
               value={category4}
               onChange={handleFilterChange}
               placeholder='Selectionner une categorie'
-              // {...(category1 && category2 && category3
-              //   ? {}
-              //   : { hidden: true, icon: false })}
+              {...(category1 && category2 && category3
+                ? {}
+                : { hidden: true, icon: false })}
                 >
               {categories
                 ?.filter((category) => category.parent === category3)

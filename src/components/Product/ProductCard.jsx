@@ -29,7 +29,7 @@ const ProductCard = ({ product }) => {
   const handleAddToCart = () => {
     dispatch(addItemToCart(product));
     toast({
-      title: "Item added to cart.",
+      title: "Produit ajouté au panier.",
       status: "success",
       duration: 2000,
       isClosable: true,
@@ -52,7 +52,6 @@ const ProductCard = ({ product }) => {
           position='absolute'
           top='4'
           right='4'
-          // aria-label={`Add ${name} to your favourites`}
           isRound
           bg='white'
           color='gray.900'
@@ -63,7 +62,6 @@ const ProductCard = ({ product }) => {
           icon={<Icon as={BsInfo} transition='all 0.15s ease' />}
           boxShadow='base'
           onClick={() => navigate(`/products/${id}`, { state: { product } })}
-          //   {...props}
         />
       </Box>
       <Stack>
@@ -74,33 +72,23 @@ const ProductCard = ({ product }) => {
             color={useColorModeValue("gray.700", "gray.400")}>
             {name}
           </Text>
-          {/* <Text
-            fontWeight='medium'
-            color={useColorModeValue("gray.700", "gray.400")}>
-            {price} DZD
-          </Text> */}
-          {/* <PriceTag price={price} salePrice={salePrice} currency='USD' /> */}
         </Stack>
-        {/* <HStack>
-          <Rating defaultValue={rating} size='sm' />
-          <Text fontSize='sm' color={useColorModeValue("gray.600", "gray.400")}>
-            12 Reviews
-          </Text>
-        </HStack> */}
       </Stack>
       <Stack align='center'>
-        <Button variant={"solid"} bg='primary' color={"white"} width='full' onClick={handleAddToCart}>
-          Add to cart
+        <Button
+          variant={"solid"}
+          bg='primary'
+          color={"white"}
+          width='full'
+          onClick={handleAddToCart}>
+          Ajouter au panier
         </Button>
-        {/* <Button colorScheme='blue' width='full' onClick={handleAddToCart}>
-          Add to cart
-        </Button> */}
-        <Link
+        {/* <Link
           textDecoration='underline'
           fontWeight='medium'
           color={useColorModeValue("gray.600", "gray.400")}>
           Quick shop
-        </Link>
+        </Link> */}
       </Stack>
     </Stack>
   );

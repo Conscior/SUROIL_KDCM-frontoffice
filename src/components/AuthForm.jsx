@@ -1,21 +1,25 @@
-import {
-  Tabs,
-  Tab,
-  TabList,
-  TabPanels,
-  TabPanel,
-  Stack,
-  Flex,
-  useColorModeValue,
-} from "@chakra-ui/react";
+// import {} from "@chakra-ui/react";
+import { useState } from "react";
 
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 
 const AuthForm = () => {
+  const [isSignIn, setIsSignIn] = useState(true);
+
+  const switchAuth = () => {
+    setIsSignIn(!isSignIn);
+  };
+
   return (
     <>
-      <Flex
+      {isSignIn ? (
+        <SignInForm switchAuth={switchAuth} />
+      ) : (
+        <SignUpForm switchAuth={switchAuth} />
+      )}
+
+      {/* <Flex
         align={"center"}
         justify={"center"}>
         <Stack w={"50%"}>
@@ -34,7 +38,7 @@ const AuthForm = () => {
             </TabPanels>
           </Tabs>
         </Stack>
-      </Flex>
+      </Flex> */}
     </>
   );
 };

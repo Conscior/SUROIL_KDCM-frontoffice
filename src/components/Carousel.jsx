@@ -1,4 +1,13 @@
-import { Box, IconButton, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Box,
+  Stack,
+  Flex,
+  Button,
+  Text,
+  VStack,
+  AspectRatio,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -18,8 +27,50 @@ const Carousel = () => {
     <Swiper
       navigation={true}
       modules={[Navigation]}
-      // className='mySwiper'
-      style={{ height: "700px", width: "100%"}}>
+      style={{ height: "700px", width: "100%" }}>
+      <SwiperSlide>
+        <Flex
+          w={"full"}
+          h={"100vh"}
+          backgroundImage={"url(https://gachemicalsrls.com/img/intro-bg.png)"}
+          backgroundSize={"cover"}
+          backgroundPosition={"center center"}>
+          <VStack
+            w={"full"}
+            justify={"center"}
+            px={useBreakpointValue({ base: 4, md: 8 })}
+            bgGradient={"linear(to-r, blackAlpha.600, transparent)"}>
+            <Stack maxW={"2xl"} align={"flex-start"} spacing={6}>
+              <Text
+                color={"white"}
+                fontWeight={700}
+                lineHeight={1.2}
+                fontSize={useBreakpointValue({ base: "3xl", md: "4xl" })}>
+                Lorem ipsum dolor sit amet consectetur adipiscing elit sed do
+                eiusmod tempor
+              </Text>
+              <Stack direction={"row"}>
+                <Button
+                  bg={"primary"}
+                  rounded={"full"}
+                  color={"white"}
+                  _hover={{ bg: "blue.500" }}>
+                  Action
+                </Button>
+              </Stack>
+            </Stack>
+          </VStack>
+        </Flex>
+      </SwiperSlide>
+      <SwiperSlide>
+        <AspectRatio ratio={"16/9"}>
+          <iframe
+            src='https://www.youtube.com/embed/D0UnqGm_miA'
+            title='Dummy Video For Website'
+            allowFullScreen
+          />
+        </AspectRatio>
+      </SwiperSlide>
       {cards.map((imgUrl, index) => (
         <SwiperSlide key={index}>
           {/* <img src={imgUrl} /> */}

@@ -50,35 +50,36 @@ const features = [
   },
 ];
 
-const Feature = ({ text, icon, iconBg }) => {
-  return (
-    <Stack direction={"row"} align={"center"}>
-      <Flex
-        w={8}
-        h={8}
-        align={"center"}
-        justify={"center"}
-        rounded={"full"}
-        bg={iconBg}>
-        {icon}
-      </Flex>
-      <Text fontWeight={600}>{text}</Text>
-    </Stack>
-  );
-};
+const secondFeatures = [
+  {
+    title: "Qualité garantie",
+    text: "La qualité de nos produits est constamment contrôlée et garantie selon les normes de l'industrie. Avec nous, vous serez en sécurité.",
+    icon: IoAnalyticsSharp,
+  },
+  {
+    title: "Lorem",
+    text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, at quam. Assumenda facere cumque mea.",
+    icon: IoAnalyticsSharp,
+  },
+  {
+    title: "Lorem2",
+    text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, at quam. Assumenda facere cumque mea.",
+    icon: IoAnalyticsSharp,
+  },
+];
 
 const Features = () => {
   return (
     <>
-      {/* <Container maxW={"5xl"} py={12}> */}
-      <SimpleGrid py={12} columns={{ base: 1, md: 2 }} spacing={10}>
+      {/* First Feature */}
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} px='10' py='10'>
         <Stack spacing={4}>
           <Text
             textTransform={"uppercase"}
-            color={"blue.400"}
+            color={"white"}
             fontWeight={600}
             fontSize={"xl"}
-            bg={useColorModeValue("blue.50", "blue.900")}
+            bg={"primary"}
             p={2}
             alignSelf={"flex-start"}
             rounded={"md"}>
@@ -102,49 +103,46 @@ const Features = () => {
             vingtaine d’employés, qualifiés d’assurer une bonne gestion et une
             meilleure organisation. <br />
           </Text>
-          <Stack
-            spacing={4}
-            divider={
-              <StackDivider
-                borderColor={useColorModeValue("gray.100", "gray.700")}
-              />
-            }>
-            <Feature
-              icon={
-                <Icon as={IoAnalyticsSharp} color={"yellow.500"} w={5} h={5} />
-              }
-              iconBg={useColorModeValue("yellow.100", "yellow.900")}
-              text={"Business Planning"}
-            />
-            <Feature
-              icon={<Icon as={IoLogoBitcoin} color={"green.500"} w={5} h={5} />}
-              iconBg={useColorModeValue("green.100", "green.900")}
-              text={"Financial Planning"}
-            />
-            <Feature
-              icon={
-                <Icon as={IoSearchSharp} color={"purple.500"} w={5} h={5} />
-              }
-              iconBg={useColorModeValue("purple.100", "purple.900")}
-              text={"Market Analysis"}
-            />
-          </Stack>
         </Stack>
         <Flex>
           <Image
             rounded={"md"}
             alt={"feature image"}
             src={
-              "https://images.unsplash.com/photo-1554200876-56c2f25224fa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              "https://gachemicalsrls.com/img/intro-bg.png"
+              // "https://images.unsplash.com/photo-1554200876-56c2f25224fa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
             }
             objectFit={"cover"}
           />
         </Flex>
       </SimpleGrid>
-      {/* </Container> */}
 
       {/* Second feature */}
-      <Box py={4}>
+      <SimpleGrid
+        columns={{ base: 1, md: 3, lg: 3 }}
+        spacing={10}
+        textAlign='center'
+        px='40'
+        py='10'
+        bgGradient={
+          "linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(224,0,37,1) 50%, rgba(252,176,69,1) 100%)"
+        }>
+        {secondFeatures.map((feature) => (
+          <Stack
+            key={feature.title}
+            justify={"center"}
+            align='center'
+            color={"white"}
+            spacing='4'>
+            <Icon as={feature.icon} w={16} h={16} />
+            <Text fontWeight={600}>{feature.title}</Text>
+            <Text>{feature.text}</Text>
+          </Stack>
+        ))}
+      </SimpleGrid>
+
+      {/* Third feature */}
+      <Box py={10}>
         <Stack spacing={4} as={Container} maxW={"80%"} textAlign={"center"}>
           <Heading fontSize={"3xl"}>
             Commercialisation des équipements professionnels <br /> de nettoyage
@@ -162,10 +160,11 @@ const Features = () => {
           </Text>
         </Stack>
 
+        {/* Fourth Feature */}
         <Container maxW={"80%"} mt={10}>
-          <Heading textAlign='center' fontSize={"3xl"} mb={5}>
-            Title
-          </Heading>
+          {/* <Heading textAlign='center' fontSize={"3xl"} mb={5}>
+            
+          </Heading> */}
           <SimpleGrid columns={{ base: 1, md: 2, lg: 2 }} spacing={10}>
             {features.map((feature) => (
               <HStack key={feature.id} align={"center"}>

@@ -8,11 +8,15 @@ import {
   DrawerCloseButton,
   Button,
   VStack,
+  Box,
+  Input,
+  FormLabel,
+  Select,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -25,6 +29,7 @@ import {
 
 import { selectCurrentUser } from "../features/state/authSlice";
 import { useCreateOrderMutation } from "../features/api/ordersApiSlice";
+import { useGetStoresQuery } from "../features/api/storesApiSlice";
 
 import ShoppingCartItem from "./ShoppingCartItem";
 import CustomAlertDialog from "./CustomAlertDialog";
@@ -38,77 +43,54 @@ const ShoppingCart = ({ isOpen, onClose }) => {
     onOpen: onAlertOpen,
     onClose: onAlertClose,
   } = useDisclosure();
+  const [store, setStore] = useState(false)
 
   const user = useSelector(selectCurrentUser);
   const cartItems = useSelector(selectCartItems);
   const totalQuantity = useSelector(selectTotalQuantity);
 
-  const [createOrder, { isSuccess }] = useCreateOrderMutation();
+  const [createOrder, { isSuccess, isLoading: isCreatingOrder }] =
+    useCreateOrderMutation();
+  const { data: stores } = useGetStoresQuery();
+
+  const handleOnCheckout = async () => {
+    try {
+      const res = await createOrder({
+        customer_id: user.id,
+        order_lines: cartItems,
+        status: "draft",
+      });
+      console.log(res);
+      toast({
+        title: "Order created",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+      dispatch(clearCart());
+      onClose();
+      onAlertClose();
+    } catch (error) {
+      toast({
+        title: "Couldn't create an order.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
 
   const alertInfo = {
     header: "Créer un devis ?",
     body: "Un email vous sera envoyer.",
     confirmText: "Confirmer",
     cancelText: "Annuler",
-    onConfirm: async () => {
-      try {
-        const res = await createOrder({
-          customer_id: user.id,
-          order_lines: cartItems,
-          status: "draft",
-        });
-        console.log(res);
-        toast({
-          title: "Order created",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-        });
-        dispatch(clearCart());
-        onClose();
-        onAlertClose();
-      } catch (error) {
-        toast({
-          title: "Couldn't create an order.",
-          status: "error",
-          duration: 3000,
-          isClosable: true,
-        });
-      }
-    },
+    onConfirm: handleOnCheckout,
   };
 
   useEffect(() => {
     dispatch(updateCart());
   }, [dispatch, cartItems]);
-
-  // const handleOnCheckout = async () => {
-  //   try {
-  //     const res = await createOrder({
-  //       customer_id: user.id,
-  //       order_lines: cartItems,
-  //       status: "draft",
-  //     });
-  //     console.log(res);
-  //     toast({
-  //       title: "Order created",
-  //       status: "success",
-  //       duration: 3000,
-  //       isClosable: true,
-  //     });
-  //     dispatch(clearCart()); // Clear shopping cart
-  //     onClose(); //Close drawer
-  //   } catch (error) {
-  //     toast({
-  //       title: "Couldn't create an order.",
-  //       status: "error",
-  //       duration: 3000,
-  //       isClosable: true,
-  //     });
-  //   }
-  // onClose();
-  // navigate("/checkout");
-  // };
 
   return (
     <>
@@ -121,6 +103,19 @@ const ShoppingCart = ({ isOpen, onClose }) => {
           </DrawerHeader>
 
           <DrawerBody>
+            <Box pb={4}>
+              <Select
+                name='store'
+                value={store}
+                onChange={handleFormChange}
+                placeholder='Choisissez un magasin'>
+                {stores?.map((store) => (
+                  <option key={store.id} value={store.id}>
+                    {store.name}
+                  </option>
+                ))}
+              </Select>
+            </Box>
             <VStack>
               {cartItems?.map((item) => (
                 <ShoppingCartItem key={item.product_id} cartItem={item} />
@@ -138,6 +133,8 @@ const ShoppingCart = ({ isOpen, onClose }) => {
             <Button
               colorScheme={"red"}
               disabled={cartItems.length && user ? false : true}
+              isLoading={isCreatingOrder}
+              loadingText='Creation du devis ...'
               onClick={onAlertOpen}>
               Créer le devis
             </Button>
