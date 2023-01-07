@@ -107,7 +107,7 @@ const ShoppingCart = ({ isOpen, onClose }) => {
               <Select
                 name='store'
                 value={store}
-                onChange={handleFormChange}
+                // onChange={handleFormChange}
                 placeholder='Choisissez un magasin'>
                 {stores?.map((store) => (
                   <option key={store.id} value={store.id}>
