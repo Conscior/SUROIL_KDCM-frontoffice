@@ -6,27 +6,28 @@ import BasicLayout from "./routes/BasicLayout";
 import Auth from "./routes/Auth";
 import Contact from "./routes/Contact";
 import Home from "./routes/Home";
-import Shop from "./routes/Shop";
+import Products from "./routes/Products";
 import Product from "./routes/Product";
 import Account from "./routes/Account";
+import AfterSaleService from "./routes/AfterSaleService";
 
 import { ROLES } from "./config/roles";
 
 import { AnimatePresence } from "framer-motion";
 
 const App = () => {
-  const location = useLocation()
+  const location = useLocation();
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path='/' element={<BasicLayout />}>
           {/* Public Routes */}
           <Route index element={<Home />} />
           <Route path='auth' element={<Auth />} />
-          <Route path='products' element={<Shop />} />
-          {/* <Route path='products/all' element={<Shop />} /> */}
+          <Route path='products' element={<Products />} />
           <Route path='products/:productID' element={<Product />} />
           <Route path='contact' element={<Contact />} />
+          <Route path='service-apres-vente' element={<AfterSaleService />} />
 
           {/* Protected routes */}
           <Route element={<RequireAuth allowedRoles={[ROLES.Customer]} />}>

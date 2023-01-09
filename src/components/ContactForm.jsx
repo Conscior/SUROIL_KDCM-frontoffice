@@ -29,6 +29,7 @@ import { useState } from "react";
 
 import { useCreateContactFormEntryMutation } from "../features/api/contactFormEntriesApiSlice";
 import { useGetStoresQuery } from "../features/api/storesApiSlice";
+import { motion } from "framer-motion";
 
 const socials = [
   {
@@ -63,29 +64,23 @@ const ContactForm = () => {
   const handleContactFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await createContactFormEntry({
+      await createContactFormEntry({
         customer_name: name,
         customer_email: email,
         store_id: store,
         message,
-      });
-      // Handle response with status code !2xx by checking res.error
-      if (res.error) {
-        toast({
-          title: res.error.data.message,
-          status: "error",
-          isClosable: true,
-        });
-      } else {
-        toast({
-          title: "Formulaire envoyé avec succès.",
-          status: "success",
-          isClosable: true,
-        });
-      }
-    } catch (error) {
+      }).unwrap();
       toast({
-        title: "Problème lors de l'envoi du formulaire.",
+        title: "Formulaire envoie avec succès !",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+    } catch (error) {
+      let errMessage = "Problème lors de l'envoi du formulaire.";
+      if (error.data?.message) errMessage = error.data.message;
+      toast({
+        title: errMessage,
         status: "error",
         isClosable: true,
       });
@@ -204,15 +199,13 @@ const ContactForm = () => {
                   </FormControl>
 
                   <Button
+                    as={motion.button}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     type='submit'
-                    colorScheme='blue'
-                    bg='primary'
-                    color='white'
-                    _hover={{
-                      bg: "secondary",
-                    }}
                     isLoading={isLoading}
-                    loadingText='Envoie ...'>
+                    loadingText='Envoie ...'
+                    _hover={{}}>
                     Envoyer
                   </Button>
                 </VStack>

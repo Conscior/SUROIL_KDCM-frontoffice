@@ -17,6 +17,7 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
+  MenuGroup,
   Text,
   Link,
 } from "@chakra-ui/react";
@@ -114,7 +115,7 @@ const Navbar = () => {
                   _hover={{}}>
                   Nos services
                 </MenuButton>
-                <MenuList>
+                <MenuList zIndex={2}>
                   <MenuItem as={NavLink} to='/service-apres-vente'>
                     Service aprés vente
                   </MenuItem>
@@ -146,7 +147,7 @@ const Navbar = () => {
                 onClick={onShoppingCartOpen}
               />
               {user ? (
-                <Menu>
+                <Menu isLazy autoSelect={false}>
                   <MenuButton
                     py={2}
                     transition='all 0.3s'
@@ -178,11 +179,16 @@ const Navbar = () => {
                     // bg={useColorModeValue("white", "gray.900")}
                     // borderColor={useColorModeValue("gray.200", "gray.700")}
                   >
-                    {userLinks.map((link) => (
+                    {/* {userLinks.map((link) => (
                       <MenuItem as={ReachLink} key={link.name} to={link.href}>
                         {link.name}
                       </MenuItem>
-                    ))}
+                    ))} */}
+                    <MenuGroup title='Profile'>
+                      <MenuItem as={ReachLink}  to='/compte'>
+                        Mon compte
+                      </MenuItem>
+                    </MenuGroup>
                     <MenuDivider />
                     <MenuItem onClick={() => logout()}>Se déconnecter</MenuItem>
                   </MenuList>

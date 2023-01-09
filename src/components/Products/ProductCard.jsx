@@ -84,11 +84,11 @@ const ProductCard = ({ product }) => {
           Ajouter au panier
         </Button>
         {/* <Link
-          textDecoration='underline'
-          fontWeight='medium'
-          color={useColorModeValue("gray.600", "gray.400")}>
-          Quick shop
-        </Link> */}
+            textDecoration='underline'
+            fontWeight='medium'
+            color={useColorModeValue("gray.600", "gray.400")}>
+            Quick shop
+          </Link> */}
       </Stack>
     </Stack>
   );
