@@ -23,7 +23,7 @@ const navLinks = [
   { name: "Nos produits", href: "/produits" },
   { name: "Services", href: "#" },
   { name: "Qui sommes nous", href: "#" },
-  { name: "Contact", href: "/contact" },
+  { name: "Contact", href: "/nous-contacter" },
 ];
 
 const socials = [

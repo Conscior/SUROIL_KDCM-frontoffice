@@ -6,7 +6,7 @@ const AfterSaleServiceHeader = () => {
     <>
       <Box px={8}>
         <Heading mb={4}>Service après vente</Heading>
-        <Text fontSize='xl'>
+        <Text fontSize='xl' textAlign={"start"}>
           Un service après vente (SAV) de qualité, une disponibilité de pièces
           de rechange et un atelier de réparation répondant à juste titre à
           l'ensemble des interventions de tous les équipements commercialisés

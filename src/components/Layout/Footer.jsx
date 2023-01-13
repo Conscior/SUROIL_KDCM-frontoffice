@@ -18,6 +18,8 @@ import {
 import { ReactComponent as SUROIL } from "../../assets/SUROIL.svg";
 import { ReactComponent as KDCM } from "../../assets/KDCM.svg";
 
+import { Link as ReachLink } from "react-router-dom";
+
 const socialLinks = [
   {
     title: "Facebook",
@@ -59,7 +61,7 @@ const Footer = () => {
           justifyContent={{ sm: "space-between", md: "normal" }}
           alignItems={"start"}>
           <Text fontSize='md' fontWeight='bold'>
-            Presentation
+            Présentation
           </Text>
 
           <VStack spacing={4} alignItems='flex-start'>
@@ -67,7 +69,9 @@ const Footer = () => {
               Produits
             </Text>
             <VStack spacing={2} alignItems='flex-start' color='gray.500'>
-              <Link>Nos produits</Link>
+              <Link as={ReachLink} to='/produits'>
+                Nos produits
+              </Link>
             </VStack>
           </VStack>
 
@@ -76,7 +80,9 @@ const Footer = () => {
               Nos services
             </Text>
             <VStack spacing={2} alignItems='flex-start' color='gray.500'>
-              <Link>Services aprés-ventes</Link>
+              <Link as={ReachLink} to='/service-apres-vente'>
+                Services aprés-ventes
+              </Link>
             </VStack>
           </VStack>
 
@@ -85,8 +91,11 @@ const Footer = () => {
               Contact
             </Text>
             <VStack spacing={2} alignItems='flex-start' color='gray.500'>
-              <Link>Nous contacter</Link>
+              <Link as={ReachLink} to='/nous-contacter' >Nous contacter</Link>
             </VStack>
+            {/* <VStack spacing={2} alignItems='flex-start' color='gray.500'>
+              <Link as={ReachLink} to='/'>Informations</Link>
+            </VStack> */}
           </VStack>
         </HStack>
       </Stack>

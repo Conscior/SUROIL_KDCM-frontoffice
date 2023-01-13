@@ -43,7 +43,7 @@ const links = [
   { name: "Présentation", href: "/" },
   { name: "Produits", href: "/produits" },
   { name: "Nos services", href: "/services" },
-  { name: "Contact", href: "/contact" },
+  { name: "Contact", href: "/nous-contacter" },
 ];
 
 const userLinks = [{ name: "Compte", href: "/account" }];
@@ -129,15 +129,19 @@ const Navbar = () => {
                   </MenuItem>
                 </MenuList>
               </Menu>
-              <Button
-                as={NavLink}
-                to='/contact'
-                style={({ isActive }) =>
-                  isActive ? { color: "black" } : { color: "grey" }
-                }
-                _hover={{}}>
-                Contact
-              </Button>
+              <Menu isLazy autoSelect={false}>
+                <MenuButton
+                  as={Button}
+                  rightIcon={<IoChevronDown />}
+                  _hover={{}}>
+                  Contact
+                </MenuButton>
+                <MenuList zIndex={2}>
+                  <MenuItem as={NavLink} to='/nous-contacter'>
+                    Nous contacter
+                  </MenuItem>
+                </MenuList>
+              </Menu>
             </ButtonGroup>
 
             <HStack spacing='2'>

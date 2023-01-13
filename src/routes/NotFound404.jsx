@@ -1,11 +1,14 @@
 import { HStack, Box, Heading, Text, Button } from "@chakra-ui/react";
-import { ReactComponent as UNDRAW_LOGISTICS } from "../../assets/undraw_logistics.svg";
 
-const Products404 = () => {
+import { ReactComponent as UNDRAW_PAGE_NOT_FOUND } from "../assets/undraw_page_not_found.svg";
+
+import { Link } from "react-router-dom";
+
+const NotFound404 = () => {
   return (
     <HStack alignContent={"center"} justify='center' spacing={8} p={12}>
-      <Box w="60%" display={{ base: "none", lg: "flex", xl: "flex" }}>
-        <UNDRAW_LOGISTICS />
+      <Box w='60%' display={{ base: "none", lg: "flex" }}>
+        <UNDRAW_PAGE_NOT_FOUND />
       </Box>
       <Box textAlign='center' py={10} px={6}>
         <Heading
@@ -14,13 +17,15 @@ const Products404 = () => {
           size='2xl'
           bgGradient='linear(to-r, primary, secondary)'
           backgroundClip='text'>
-          Aucun produit trouvé !
+          Page introuvable !
         </Heading>
         <Text fontSize='18px' mt={3} mb={2}>
-          Veuillez revenir plus tard.
+          Le contenu que vous cherchez ne semble pas exister.
         </Text>
 
         <Button
+          as={Link}
+          to='/'
           bgGradient='linear(to-r, primary, secondary)'
           color='white'
           variant='solid'>
@@ -28,10 +33,7 @@ const Products404 = () => {
         </Button>
       </Box>
     </HStack>
-    // <Container width={"full"}>
-    //   <UNDRAW_LOGISTICS />
-    // </Container>
   );
 };
 
-export default Products404;
+export default NotFound404;

@@ -1,8 +1,8 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 
+import BasicLayout from "./routes/BasicLayout";
 import RequireAuth from "./components/RequireAuth";
 
-import BasicLayout from "./routes/BasicLayout";
 import Auth from "./routes/Auth";
 import Contact from "./routes/Contact";
 import Home from "./routes/Home";
@@ -11,6 +11,8 @@ import Product from "./routes/Product";
 import Account from "./routes/Account";
 import AfterSaleService from "./routes/AfterSaleService";
 
+import NotFound404 from "./routes/NotFound404";
+
 import { ROLES } from "./config/roles";
 
 import { AnimatePresence } from "framer-motion";
@@ -18,7 +20,7 @@ import { AnimatePresence } from "framer-motion";
 const App = () => {
   const location = useLocation();
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode='wait'>
       <Routes location={location} key={location.pathname}>
         <Route path='/' element={<BasicLayout />}>
           {/* Public Routes */}
@@ -26,14 +28,15 @@ const App = () => {
           <Route path='auth' element={<Auth />} />
           <Route path='produits' element={<Products />} />
           <Route path='produits/:productID' element={<Product />} />
-          <Route path='contact' element={<Contact />} />
-          <Route path='service-apres-vente' element={<AfterSaleService />} />
-          <Route path='compte' element={<Account />} />
+          <Route path='nous-contacter' element={<Contact />} />
+          <Route path='*' element={<NotFound404 />} />
 
           {/* Protected routes */}
-          {/* <Route element={<RequireAuth allowedRoles={[ROLES.Customer]} />}>
+          {/* Require Auth only */}
+          <Route element={<RequireAuth />}>
+            <Route path='service-apres-vente' element={<AfterSaleService />} />
             <Route path='compte' element={<Account />} />
-          </Route> */}
+          </Route>
         </Route>
       </Routes>
     </AnimatePresence>
