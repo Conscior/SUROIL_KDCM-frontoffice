@@ -3,6 +3,7 @@ import {
   Stack,
   Flex,
   Button,
+  Heading,
   Text,
   VStack,
   AspectRatio,
@@ -38,18 +39,19 @@ const Carousel = () => {
           <VStack
             w={"full"}
             justify={"center"}
+            alignItems='start'
             px={useBreakpointValue({ base: 4, md: 8 })}
             bgGradient={"linear(to-r, blackAlpha.600, transparent)"}>
-            <Stack maxW={"2xl"} align={"flex-start"} spacing={6}>
+            <Stack align={"flex-start"} spacing={6} pl='10%'>
+              <Heading color={"white"}>SUROIL KDCM</Heading>
               <Text
                 color={"white"}
                 fontWeight={700}
                 lineHeight={1.2}
                 fontSize={useBreakpointValue({ base: "3xl", md: "4xl" })}>
-                Lorem ipsum dolor sit amet consectetur adipiscing elit sed do
-                eiusmod tempor
+                Leader dans son domaine depuis 1994
               </Text>
-              <Stack direction={"row"}>
+              {/* <Stack direction={"row"}>
                 <Button
                   bg={"primary"}
                   rounded={"full"}
@@ -57,12 +59,12 @@ const Carousel = () => {
                   _hover={{ bg: "blue.500" }}>
                   Action
                 </Button>
-              </Stack>
+              </Stack> */}
             </Stack>
           </VStack>
         </Flex>
       </SwiperSlide>
-      <SwiperSlide>
+      {/* <SwiperSlide>
         <AspectRatio ratio={"16/9"}>
           <iframe
             src='https://www.youtube.com/embed/D0UnqGm_miA'
@@ -70,7 +72,7 @@ const Carousel = () => {
             allowFullScreen
           />
         </AspectRatio>
-      </SwiperSlide>
+      </SwiperSlide> */}
       {cards.map((imgUrl, index) => (
         <SwiperSlide key={index}>
           {/* <img src={imgUrl} /> */}

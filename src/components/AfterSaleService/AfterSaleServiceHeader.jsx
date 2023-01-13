@@ -1,4 +1,5 @@
 import { Box, Heading, Text, SimpleGrid, Stack, Image } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 
 const AfterSaleServiceHeader = () => {
   return (
@@ -17,7 +18,7 @@ const AfterSaleServiceHeader = () => {
           Nos valeurs
         </Heading>
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-          <Stack align={"center"}>
+          <Stack as={motion.div} whileHover={{ scale: 1.1 }} align={"center"}>
             <Image
               src='https://suroilkdcm.com/wp-content/uploads/2021/03/2.png'
               alt="Piéce d'origines"
@@ -28,7 +29,7 @@ const AfterSaleServiceHeader = () => {
               meilleure qualité de réparation.
             </Text>
           </Stack>
-          <Stack align={"center"}>
+          <Stack as={motion.div} whileHover={{ scale: 1.1 }} align={"center"}>
             <Image
               src='https://suroilkdcm.com/wp-content/uploads/2021/03/download-1.png'
               alt='Personnel qualifié'

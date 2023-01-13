@@ -25,14 +25,14 @@ import {
   clearCart,
   selectCartItems,
   selectTotalQuantity,
-} from "../features/state/shoppingCartSlice";
+} from "../../features/state/shoppingCartSlice";
 
-import { selectCurrentUser } from "../features/state/authSlice";
-import { useCreateOrderMutation } from "../features/api/ordersApiSlice";
-import { useGetStoresQuery } from "../features/api/storesApiSlice";
+import { selectCurrentUser } from "../../features/state/authSlice";
+import { useCreateOrderMutation } from "../../features/api/ordersApiSlice";
+import { useGetStoresQuery } from "../../features/api/storesApiSlice";
 
 import ShoppingCartItem from "./ShoppingCartItem";
-import CustomAlertDialog from "./CustomAlertDialog";
+import CustomAlertDialog from "../CustomAlertDialog";
 
 const ShoppingCart = ({
   isOpen: isShoppingCartOpen,
@@ -143,12 +143,13 @@ const ShoppingCart = ({
 
           <DrawerFooter>
             <Button
-              variant='outline'
+              variant='suroilOutline'
               mr={3}
               onClick={handleCartClear}>
               Réinitialiser
             </Button>
             <Button
+              variant="suroilSolid"
               disabled={cartItems.length && user && store ? false : true}
               isLoading={isCreatingOrder}
               loadingText='Creation du devis ...'

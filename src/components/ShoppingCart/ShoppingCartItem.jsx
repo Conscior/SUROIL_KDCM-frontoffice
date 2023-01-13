@@ -1,4 +1,11 @@
-import { HStack, Box, Flex, chakra, IconButton, Button } from "@chakra-ui/react";
+import {
+  HStack,
+  Box,
+  Flex,
+  chakra,
+  IconButton,
+  Button,
+} from "@chakra-ui/react";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 
 import { useDispatch } from "react-redux";
@@ -6,7 +13,7 @@ import {
   incrementQuantity,
   decrementQuantity,
   removeItem,
-} from "../features/state/shoppingCartSlice";
+} from "../../features/state/shoppingCartSlice";
 
 const ShoppingCartItem = ({ cartItem }) => {
   const dispatch = useDispatch();

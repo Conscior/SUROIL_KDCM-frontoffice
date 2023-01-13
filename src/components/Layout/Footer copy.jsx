@@ -14,15 +14,13 @@ import {
   Divider,
 } from "@chakra-ui/react";
 
-// import { Link as ReachLink } from "react-router-dom";
-
 import { FaFacebook, FaInstagram, FaTwitter, FaMailBulk } from "react-icons/fa";
 
-import { ReactComponent as SUROIL } from "../assets/SUROIL.svg";
-import { ReactComponent as KDCM } from "../assets/KDCM.svg";
+import { ReactComponent as SUROIL } from "../../assets/SUROIL.svg";
+import { ReactComponent as KDCM } from "../../assets/KDCM.svg";
 
 const navLinks = [
-  { name: "Nos produits", href: "/products" },
+  { name: "Nos produits", href: "/produits" },
   { name: "Services", href: "#" },
   { name: "Qui sommes nous", href: "#" },
   { name: "Contact", href: "/contact" },

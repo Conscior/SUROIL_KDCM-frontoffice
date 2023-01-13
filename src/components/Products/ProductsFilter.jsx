@@ -9,17 +9,15 @@ import {
   Button,
   VStack,
   Select,
-  useDisclosure,
-  useToast,
 } from "@chakra-ui/react";
 
 import { useState } from "react";
 
-import { useGetCategoriesQuery } from "../features/api/categoriesApiSlice";
+import { useGetCategoriesQuery } from "../../features/api/categoriesApiSlice";
 
 // Handle sub categories
 
-const ProductFilter = ({ isOpen, onClose, setProductFilter }) => {
+const ProductsFilter = ({ isOpen, onClose, setProductsFilter }) => {
   const [filterFields, setFilterFields] = useState({
     category1: false,
     category2: false,
@@ -69,12 +67,12 @@ const ProductFilter = ({ isOpen, onClose, setProductFilter }) => {
     } else if (!category4 && !category3 && category2 && category1) {
     }
 
-    setProductFilter(filter);
+    setProductsFilter(filter);
     onClose();
   };
 
   const handleFilterReset = () => {
-    setProductFilter(false);
+    setProductsFilter(false);
     setFilterFields({
       category1: false,
       category2: false,
@@ -127,8 +125,7 @@ const ProductFilter = ({ isOpen, onClose, setProductFilter }) => {
               placeholder='Selectionner une categorie'
               {...(category1 && category2
                 ? {}
-                : { hidden: true, icon: false })}
-                >
+                : { hidden: true, icon: false })}>
               {categories
                 ?.filter((category) => category.parent === category2)
                 .map((category) => (
@@ -144,8 +141,7 @@ const ProductFilter = ({ isOpen, onClose, setProductFilter }) => {
               placeholder='Selectionner une categorie'
               {...(category1 && category2 && category3
                 ? {}
-                : { hidden: true, icon: false })}
-                >
+                : { hidden: true, icon: false })}>
               {categories
                 ?.filter((category) => category.parent === category3)
                 .map((category) => (
@@ -170,4 +166,4 @@ const ProductFilter = ({ isOpen, onClose, setProductFilter }) => {
   );
 };
 
-export default ProductFilter;
+export default ProductsFilter;

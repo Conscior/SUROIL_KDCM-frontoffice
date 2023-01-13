@@ -1,4 +1,3 @@
-import { ReactComponentElement } from "react";
 import {
   Box,
   Flex,
@@ -20,32 +19,29 @@ import {
   MenuGroup,
   Text,
   Link,
+  useToast,
 } from "@chakra-ui/react";
 import {
-  BsList,
-  BsX,
-  BsBoxArrowInRight,
-  BsCart,
-  BsChevronDown,
-} from "react-icons/bs";
-import { FiChevronDown } from "react-icons/fi";
+  IoCartOutline,
+  IoChevronDown,
+  IoCloseOutline,
+  IoMenuOutline,
+} from "react-icons/io5";
 
-import { NavLink, Link as ReachLink } from "react-router-dom";
+import { NavLink, Link as ReachLink, useNavigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../features/state/authSlice";
-import { useLogoutMutation } from "../features/api/authApiSlice";
+import { selectCurrentUser } from "../../features/state/authSlice";
+import { useLogoutMutation } from "../../features/api/authApiSlice";
 
-import Sidebar from "./Sidebar";
-import ShoppingCart from "./ShoppingCart";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
-import { ReactComponent as SUROIL } from "../assets/SUROIL.svg";
-import { ReactComponent as KDCM } from "../assets/KDCM.svg";
-// import { KDCM as KDCM } from "../assets/KDCM.svg"
+import { ReactComponent as SUROIL } from "../../assets/SUROIL.svg";
+import { ReactComponent as KDCM } from "../../assets/KDCM.svg";
 
 const links = [
   { name: "Présentation", href: "/" },
-  { name: "Produits", href: "/products" },
+  { name: "Produits", href: "/produits" },
   { name: "Nos services", href: "/services" },
   { name: "Contact", href: "/contact" },
 ];
@@ -53,6 +49,8 @@ const links = [
 const userLinks = [{ name: "Compte", href: "/account" }];
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const toast = useToast();
   const user = useSelector(selectCurrentUser);
   const [logout] = useLogoutMutation();
 
@@ -62,15 +60,25 @@ const Navbar = () => {
     onClose: onMobileViewClose,
   } = useDisclosure();
   const {
-    isOpen: isDrawerOpen,
-    // onOpen: onDrawerOpen,
-    onClose: onDrawerClose,
-  } = useDisclosure();
-  const {
     isOpen: isShoppingCartOpen,
     onOpen: onShoppingCartOpen,
     onClose: onShoppingCartClose,
   } = useDisclosure();
+
+  const handleLogout = async () => {
+    try {
+      await logout().unwrap();
+      navigate("/");
+    } catch (error) {
+      let errMessage = "Problème lors de la déconnexion.";
+      if (error.data?.message) errMessage = error.data.message;
+      toast({
+        title: errMessage,
+        status: "error",
+        isClosable: true,
+      });
+    }
+  };
 
   return (
     <>
@@ -101,7 +109,7 @@ const Navbar = () => {
               </Button>
               <Button
                 as={NavLink}
-                to='/products'
+                to='/produits'
                 style={({ isActive }) =>
                   isActive ? { color: "black" } : { color: "grey" }
                 }
@@ -111,19 +119,13 @@ const Navbar = () => {
               <Menu isLazy autoSelect={false}>
                 <MenuButton
                   as={Button}
-                  rightIcon={<BsChevronDown />}
+                  rightIcon={<IoChevronDown />}
                   _hover={{}}>
                   Nos services
                 </MenuButton>
                 <MenuList zIndex={2}>
                   <MenuItem as={NavLink} to='/service-apres-vente'>
                     Service aprés vente
-                  </MenuItem>
-                  <MenuItem as={NavLink} to='/installation'>
-                    Installation
-                  </MenuItem>
-                  <MenuItem as={NavLink} to='/formation'>
-                    Formation
                   </MenuItem>
                 </MenuList>
               </Menu>
@@ -143,7 +145,7 @@ const Navbar = () => {
                 aria-label='shopping-cart'
                 variant='link'
                 fontSize='3xl'
-                icon={<BsCart />}
+                icon={<IoCartOutline />}
                 onClick={onShoppingCartOpen}
               />
               {user ? (
@@ -154,6 +156,7 @@ const Navbar = () => {
                     _focus={{ boxShadow: "none" }}>
                     <HStack>
                       <Avatar
+                        name={user.username}
                         size={"sm"}
                         src={
                           "https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
@@ -170,7 +173,7 @@ const Navbar = () => {
                         </Text>
                       </VStack>
                       <Box display={{ base: "none", md: "flex" }}>
-                        <FiChevronDown />
+                        <IoChevronDown />
                       </Box>
                     </HStack>
                   </MenuButton>
@@ -185,12 +188,12 @@ const Navbar = () => {
                       </MenuItem>
                     ))} */}
                     <MenuGroup title='Profile'>
-                      <MenuItem as={ReachLink}  to='/compte'>
+                      <MenuItem as={ReachLink} to='/compte'>
                         Mon compte
                       </MenuItem>
                     </MenuGroup>
                     <MenuDivider />
-                    <MenuItem onClick={() => logout()}>Se déconnecter</MenuItem>
+                    <MenuItem onClick={handleLogout}>Se déconnecter</MenuItem>
                   </MenuList>
                 </Menu>
               ) : (
@@ -199,7 +202,7 @@ const Navbar = () => {
                     bg={"primary"}
                     color={"white"}
                     // colorScheme={"teal"}
-                    rightIcon={<Icon as={BsBoxArrowInRight} />}>
+                  >
                     Se connecter
                   </Button>
                 </Link>
@@ -210,7 +213,13 @@ const Navbar = () => {
           {/* Mobile menu button */}
           <IconButton
             size={"md"}
-            icon={isMobileViewOpen ? <Icon as={BsX} /> : <Icon as={BsList} />}
+            icon={
+              isMobileViewOpen ? (
+                <Icon as={IoCloseOutline} />
+              ) : (
+                <Icon as={IoMenuOutline} />
+              )
+            }
             aria-label={"Open Menu"}
             display={{ lg: "none", xl: "none" }}
             onClick={isMobileViewOpen ? onMobileViewClose : onMobileViewOpen}
@@ -235,9 +244,6 @@ const Navbar = () => {
           </Box>
         ) : null}
       </Box>
-
-      {/* SideBar */}
-      <Sidebar isOpen={isDrawerOpen} onClose={onDrawerClose} user={user} />
 
       <ShoppingCart isOpen={isShoppingCartOpen} onClose={onShoppingCartClose} />
     </>

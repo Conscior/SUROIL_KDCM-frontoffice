@@ -2,39 +2,41 @@ import {
   Box,
   Text,
   Button,
-  Checkbox,
+  IconButton,
   Flex,
   Heading,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
   Input,
   Link,
   Stack,
   HStack,
-  Image,
   FormControl,
   FormLabel,
   FormErrorMessage,
   useToast,
   useColorModeValue,
-  useBreakpointValue,
 } from "@chakra-ui/react";
-
+import { IoMail, IoLockClosed, IoEye, IoEyeOff } from "react-icons/io5";
+import { ReactComponent as UNDRAW_MOBILE_APP } from "../../assets/undraw_mobile_app.svg";
 import { motion } from "framer-motion";
-
-import { ReactComponent as UNDRAW_MOBILE_APP } from "../assets/undraw_mobile_app.svg";
 
 import { useState } from "react";
 import { useNavigate, Link as RouterLink } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { setCredentials } from "../features/state/authSlice";
-import { useLoginMutation } from "../features/api/authApiSlice";
+import { setCredentials } from "../../features/state/authSlice";
+import { useLoginMutation } from "../../features/api/authApiSlice";
 
 const SignInForm = ({ switchAuth }) => {
   const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [login, { isLoading }] = useLoginMutation();
 
+  const [showPwd, setShowPwd] = useState(false);
   const [formFields, setFormFields] = useState({
     email: "",
     password: "",
@@ -96,19 +98,11 @@ const SignInForm = ({ switchAuth }) => {
       }).unwrap();
       dispatch(setCredentials({ accessToken, userInfo }));
       navigate("/");
-    } catch (err) {
-      console.log(err);
-      let errMessage = "";
-      if (err.data?.message) {
-        errMessage = err.data.message;
-      } else {
-        errMessage = "Login failed";
-      }
-
-      // Toggle the Toast
+    } catch (error) {
+      let errMessage = "Problème lors de la connexion a votre compte.";
+      if (error.data?.message) errMessage = error.data.message;
       toast({
-        title: "Error signing in.",
-        description: errMessage, //TODO Custom
+        title: errMessage,
         status: "error",
         isClosable: true,
       });
@@ -121,30 +115,36 @@ const SignInForm = ({ switchAuth }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      px={5}>
-      <HStack>
-        <Flex flex={1} align={"center"} justify={"center"} width={"50%"}>
+      px={5}
+      py={8}>
+      <HStack spacing={8}>
+        <Flex
+          flex={1}
+          align={"center"}
+          justify={"center"}
+          width={"50%"}
+          boxShadow='lg'
+          borderRadius='lg'
+          pt={8}
+          pb={4}>
           <Stack spacing={8}>
-            <Stack spacing={6}>
-              {/* <Logo /> */}
-              <Stack
-                spacing={{
-                  base: "2",
-                  md: "3",
-                }}
-                textAlign='center'>
-                <Heading>Connectez-vous à votre compte</Heading>
-                <HStack spacing='1' justify='center'>
-                  <Text color={"grey"}>Vous ne possédez pas de compte?</Text>
-                  <Button
-                    variant='link'
-                    color={"primary"}
-                    onClick={switchAuth}
-                    size='sm'>
-                    Inscrivez-vous
-                  </Button>
-                </HStack>
-              </Stack>
+            <Stack
+              spacing={{
+                base: "2",
+                md: "3",
+              }}
+              textAlign='center'>
+              <Heading>Connectez-vous à votre compte</Heading>
+              <HStack spacing='1' justify='center'>
+                <Text color={"grey"}>Vous ne possédez pas de compte?</Text>
+                <Button
+                  variant='link'
+                  color={"primary"}
+                  onClick={switchAuth}
+                  size='sm'>
+                  Inscrivez-vous
+                </Button>
+              </HStack>
             </Stack>
             <Box
               py={{
@@ -154,43 +154,50 @@ const SignInForm = ({ switchAuth }) => {
               px={{
                 base: "4",
                 sm: "10",
-              }}
-              bg={useBreakpointValue({
-                base: "transparent",
-                sm: "bg-surface",
-              })}
-              boxShadow={{
-                base: "none",
-                sm: useColorModeValue("md", "md-dark"),
-              }}
-              borderRadius={{
-                base: "none",
-                sm: "xl",
               }}>
               <form onSubmit={handleFormSubmit}>
                 <Stack spacing={4}>
-                  <FormControl id='email' isInvalid={fieldsErrMessage.email}>
+                  <FormControl
+                    id='email'
+                    isRequired
+                    isInvalid={fieldsErrMessage.email}>
                     <FormLabel>Adresse e-mail</FormLabel>
-                    <Input
-                      name='email'
-                      type='text'
-                      value={email}
-                      onChange={handleFormChange}
-                    />
+                    <InputGroup>
+                      <InputLeftElement children={<IoMail />} />
+                      <Input
+                        name='email'
+                        type='text'
+                        value={email}
+                        onChange={handleFormChange}
+                      />
+                    </InputGroup>
+
                     <FormErrorMessage>
                       {fieldsErrMessage.email}
                     </FormErrorMessage>
                   </FormControl>
                   <FormControl
                     id='password'
+                    isRequired
                     isInvalid={fieldsErrMessage.password}>
                     <FormLabel>Mot de passe</FormLabel>
-                    <Input
-                      name='password'
-                      type='password'
-                      value={password}
-                      onChange={handleFormChange}
-                    />
+                    <InputGroup>
+                      <InputLeftElement children={<IoLockClosed />} />
+                      <Input
+                        name='password'
+                        type={showPwd ? "text" : "password"}
+                        value={password}
+                        onChange={handleFormChange}
+                      />
+                      <InputRightElement>
+                        <IconButton
+                          variant={"ghost"}
+                          icon={showPwd ? <IoEyeOff /> : <IoEye />}
+                          onClick={() => setShowPwd(!showPwd)}
+                        />
+                      </InputRightElement>
+                    </InputGroup>
+
                     <FormErrorMessage>
                       {fieldsErrMessage.password}
                     </FormErrorMessage>
@@ -202,13 +209,10 @@ const SignInForm = ({ switchAuth }) => {
                   </Box>
 
                   <Button
+                    as={motion.button}
                     type='submit'
+                    variant={"suroilSolid"}
                     size='lg'
-                    bg={"primary"}
-                    color={"white"}
-                    _hover={{
-                      bg: "secondary",
-                    }}
                     isLoading={isLoading}
                     loadingText='Connection ...'>
                     Se connecter

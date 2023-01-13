@@ -13,8 +13,8 @@ const ProductsLoading = () => {
       rowGap={{ base: "8", md: "10" }}
       px='10'
       py='10'>
-      {[...Array(8)].map(() => (
-        <Box padding='6' boxShadow='lg' bg='white'>
+      {[...Array(8)].map((_, index) => (
+        <Box key={index} padding='6' boxShadow='lg' bg='white'>
           <SkeletonCircle size='10' />
           <SkeletonText mt='4' noOfLines={4} spacing='4' />
         </Box>

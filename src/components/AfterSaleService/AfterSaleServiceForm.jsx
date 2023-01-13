@@ -199,13 +199,7 @@ const AfterSaleServiceForm = () => {
   }
 
   return (
-    <Container
-      maxW='50%'
-      bg={useColorModeValue("white", "gray.700")}
-      color={useColorModeValue("gray.700", "whiteAlpha.900")}
-      borderRadius='lg'
-      shadow='base'
-      p={8}>
+    <>
       <Heading textAlign={"center"} pb={6}>
         Veuillez remplir ce formulaire
       </Heading>
@@ -287,10 +281,12 @@ const AfterSaleServiceForm = () => {
               resize='none'
             />
           </FormControl>
-          <Button type='submit'>Envoyer</Button>
+          <Button type='submit' variant='suroilSolid'>
+            Envoyer
+          </Button>
         </VStack>
       </form>
-    </Container>
+    </>
   );
 };
 

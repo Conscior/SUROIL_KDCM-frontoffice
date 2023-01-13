@@ -24,15 +24,16 @@ const App = () => {
           {/* Public Routes */}
           <Route index element={<Home />} />
           <Route path='auth' element={<Auth />} />
-          <Route path='products' element={<Products />} />
-          <Route path='products/:productID' element={<Product />} />
+          <Route path='produits' element={<Products />} />
+          <Route path='produits/:productID' element={<Product />} />
           <Route path='contact' element={<Contact />} />
           <Route path='service-apres-vente' element={<AfterSaleService />} />
+          <Route path='compte' element={<Account />} />
 
           {/* Protected routes */}
-          <Route element={<RequireAuth allowedRoles={[ROLES.Customer]} />}>
-            <Route path='account' element={<Account />} />
-          </Route>
+          {/* <Route element={<RequireAuth allowedRoles={[ROLES.Customer]} />}>
+            <Route path='compte' element={<Account />} />
+          </Route> */}
         </Route>
       </Routes>
     </AnimatePresence>

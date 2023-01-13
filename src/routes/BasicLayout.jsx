@@ -9,9 +9,9 @@ import { selectCurrentUser } from "../features/state/authSlice";
 import { useRefreshMutation } from "../features/api/authApiSlice";
 import { setCredentials } from "../features/state/authSlice";
 
-import Footer from "../components/Footer";
-import Main from "../components/Main";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Layout/Navbar";
+import Main from "../components/Layout/Main";
+import Footer from "../components/Layout/Footer";
 
 const BasicLayout = () => {
   const dispatch = useDispatch();
@@ -39,7 +39,6 @@ const BasicLayout = () => {
         console.log("Error", error);
       }
     }
-    
   }, [user, dispatch, refresh]);
 
   return (
@@ -50,6 +49,7 @@ const BasicLayout = () => {
         <Main>
           <Outlet />
         </Main>
+
         <Footer />
       </Flex>
     </>

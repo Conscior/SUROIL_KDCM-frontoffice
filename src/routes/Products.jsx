@@ -9,22 +9,22 @@ import ProductsGrid from "../components/Products/ProductsGrid";
 import ProductsLoading from "../components/Products/ProductsLoading";
 import Pagination from "../components/Pagination";
 import Products404 from "../components/Products/Products404";
-import ProductFilter from "../components/ProductFilter";
+import ProductsFilter from "../components/Products/ProductsFilter";
 
 const Products = () => {
   const {
-    isOpen: isProductFilterOpen,
-    onOpen: onProductFilterOpen,
-    onClose: onProductFilterClose,
+    isOpen: isProductsFilterOpen,
+    onOpen: onProductsFilterOpen,
+    onClose: onProductsFilterClose,
   } = useDisclosure();
 
-  const { data, isLoading, isSuccess, isError, error } = useGetProductsQuery();
+  const { data, isLoading, isSuccess, isError } = useGetProductsQuery();
 
-  const [productFilter, setProductFilter] = useState(false);
+  const [productsFilter, setProductsFilter] = useState(false);
 
-  const products = productFilter
+  const products = productsFilter
     ? data.filter((product) =>
-        productFilter.categories.includes(product.category)
+        productsFilter.categories.includes(product.category)
       )
     : data;
 
@@ -38,7 +38,7 @@ const Products = () => {
     content = <ProductsLoading />;
   } else if (isSuccess) {
     content = (
-      <Box px='10'>
+      <Box>
         {/* <CategoriesBar /> */}
         <IconButton
           variant={"outline"}
@@ -47,7 +47,7 @@ const Products = () => {
           w={"50px"}
           // mb={"5"}
           icon={<BsFilter />}
-          onClick={onProductFilterOpen}
+          onClick={onProductsFilterOpen}
         />
         <ProductsGrid
           products={products}
@@ -60,10 +60,10 @@ const Products = () => {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
-        <ProductFilter
-          isOpen={isProductFilterOpen}
-          onClose={onProductFilterClose}
-          setProductFilter={setProductFilter}
+        <ProductsFilter
+          isOpen={isProductsFilterOpen}
+          onClose={onProductsFilterClose}
+          setProductsFilter={setProductsFilter}
         />
       </Box>
     );
@@ -77,12 +77,14 @@ const Products = () => {
   }
 
   return (
-    <motion.div
+    <Box
+      as={motion.div}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}>
+      exit={{ opacity: 0 }}
+      p={8}>
       {content}
-    </motion.div>
+    </Box>
   );
 };
 

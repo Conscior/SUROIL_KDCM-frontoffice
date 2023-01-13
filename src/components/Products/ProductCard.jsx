@@ -13,7 +13,7 @@ import {
   Icon,
   useToast,
 } from "@chakra-ui/react";
-import { BsInfo } from "react-icons/bs";
+import { IoInformationOutline } from "react-icons/io5";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -59,9 +59,9 @@ const ProductCard = ({ product }) => {
           _hover={{ transform: "scale(1.1)" }}
           sx={{ ":hover > svg": { transform: "scale(1.1)" } }}
           transition='all 0.15s ease'
-          icon={<Icon as={BsInfo} transition='all 0.15s ease' />}
+          icon={<Icon as={IoInformationOutline} transition='all 0.15s ease' />}
           boxShadow='base'
-          onClick={() => navigate(`/products/${id}`, { state: { product } })}
+          onClick={() => navigate(`/produits/${id}`, { state: { product } })}
         />
       </Box>
       <Stack>
@@ -76,9 +76,7 @@ const ProductCard = ({ product }) => {
       </Stack>
       <Stack align='center'>
         <Button
-          variant={"solid"}
-          bg='primary'
-          color={"white"}
+          variant='suroilSolid'
           width='full'
           onClick={handleAddToCart}>
           Ajouter au panier

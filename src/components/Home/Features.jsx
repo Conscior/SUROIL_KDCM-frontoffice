@@ -1,4 +1,5 @@
 import {
+  chakra,
   Box,
   Container,
   SimpleGrid,
@@ -12,16 +13,16 @@ import {
   StackDivider,
   Icon,
   useColorModeValue,
+  Link,
 } from "@chakra-ui/react";
-
 import {
   IoAnalyticsSharp,
-  IoLogoBitcoin,
-  IoSearchSharp,
   IoBusinessOutline,
+  IoHomeOutline,
+  IoStorefrontOutline,
   IoCarOutline,
-  IoMapOutline,
 } from "react-icons/io5";
+import { motion } from "framer-motion";
 
 const features = [
   {
@@ -33,19 +34,19 @@ const features = [
   {
     id: 2,
     title: "Locaux",
-    text: "D'un atelier pour la petite maintenance d'une superficie de 50 m2. . De deux Locaux de stockage de 500 m2.",
-    icon: IoBusinessOutline,
+    text: "D'un atelier pour la petite maintenance d'une superficie de 50 m2. De deux Locaux de stockage de 500 m2.",
+    icon: IoHomeOutline,
   },
   {
     id: 3,
     title: "Showroom",
-    text: "D’un showroom de 200 m2.",
-    icon: IoBusinessOutline,
+    text: "D'un showroom de 200 m2.",
+    icon: IoStorefrontOutline,
   },
   {
     id: 4,
     title: "Véhicules",
-    text: "05 véhicules de services.",
+    text: "5 véhicules de services.",
     icon: IoCarOutline,
   },
 ];
@@ -67,6 +68,20 @@ const secondFeatures = [
     icon: IoAnalyticsSharp,
   },
 ];
+
+const cardMotion = {
+  offscreen: {
+    y: 300,
+  },
+  onscreen: {
+    y: 0,
+    transition: {
+      type: "spring",
+      bounce: 0.4,
+      duration: 0.8,
+    },
+  },
+};
 
 const Features = () => {
   return (
@@ -119,36 +134,68 @@ const Features = () => {
 
       {/* Second feature */}
       <SimpleGrid
-        columns={{ base: 1, md: 3, lg: 3 }}
+        as={motion.div}
+        initial={cardMotion.offscreen}
+        whileInView={cardMotion.onscreen}
+        viewport={{ once: true }}
+        columns={{ base: 1, md: 3 }}
         spacing={10}
+        placeItems='center'
         textAlign='center'
         px='40'
         py='10'
-        bgGradient={
-          "linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(224,0,37,1) 50%, rgba(252,176,69,1) 100%)"
-        }>
-        {secondFeatures.map((feature) => (
-          <Stack
-            key={feature.title}
-            justify={"center"}
-            align='center'
-            color={"white"}
-            spacing='4'>
-            <Icon as={feature.icon} w={16} h={16} />
-            <Text fontWeight={600}>{feature.title}</Text>
-            <Text>{feature.text}</Text>
-          </Stack>
+        // bgGradient={"linear(to-r, suroil.primary, kdcm.primary)"}
+      >
+        {secondFeatures.map((feature, index) => (
+          <Box
+            as={motion.div}
+            whileHover={{ scale: 1.1 }}
+            key={index}
+            bg={"red.50"}
+            p={6}
+            rounded='lg'
+            textAlign='center'
+            pos='relative'
+            borderTop={"10px solid"}
+            borderTopColor={"suroil.primary"}>
+            <Flex
+              p={2}
+              w='max-content'
+              color='white'
+              bgColor={"suroil.primary"}
+              // bgGradient='linear(to-br, #228be6, #15aabf)'
+              // bgGradient={"linear(to-r, suroil.primary, kdcm.primary)"}
+              rounded='md'
+              marginInline='auto'
+              pos='absolute'
+              left={0}
+              right={0}
+              top={-8}
+              boxShadow='lg'>
+              <Icon as={feature.icon} w={12} h={12} />
+            </Flex>
+            <chakra.h3 fontWeight='semibold' fontSize='2xl' mt={6}>
+              {feature.title}
+            </chakra.h3>
+            <Text fontSize='md' mt={4}>
+              {feature.text}
+            </Text>
+          </Box>
         ))}
       </SimpleGrid>
 
       {/* Third feature */}
-      <Box py={10}>
-        <Stack spacing={4} as={Container} maxW={"80%"} textAlign={"center"}>
+      <Box
+        py={20}
+        bg='red.800'
+        bgGradient={"linear(to-r, red.700, red.900)"}
+        color={"white"}>
+        <Stack spacing={16} as={Container} maxW={"80%"} textAlign={"center"}>
           <Heading fontSize={"3xl"}>
             Commercialisation des équipements professionnels <br /> de nettoyage
             et de garage
           </Heading>
-          <Text color={"gray.600"} fontSize={"xl"} textAlign={"justify"}>
+          <Text fontSize={"xl"} textAlign={"justify"}>
             KDCM est Créée dans le but de répondre aux exigences de la clientèle
             en matière d'équipements de nettoyage et de graissage, elle s'est
             vite intéressée à la distribution et dans le but d'agrandir son
@@ -159,27 +206,45 @@ const Features = () => {
             Bab Ezzouar.
           </Text>
         </Stack>
-
-        {/* Fourth Feature */}
-        <Container maxW={"80%"} mt={10}>
-          {/* <Heading textAlign='center' fontSize={"3xl"} mb={5}>
-            
-          </Heading> */}
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 2 }} spacing={10}>
-            {features.map((feature) => (
-              <HStack key={feature.id} align={"center"}>
-                <Box>
-                  <Icon as={feature.icon} boxSize={14} />
-                </Box>
-                <VStack align={"start"}>
-                  <Text fontWeight={600}>{feature.title}</Text>
-                  <Text color={"gray.600"}>{feature.text}</Text>
-                </VStack>
-              </HStack>
-            ))}
-          </SimpleGrid>
-        </Container>
       </Box>
+
+      {/* Fourth Feature */}
+      <Container
+        as={motion.div}
+        initial={cardMotion.offscreen}
+        whileInView={cardMotion.onscreen}
+        viewport={{ once: true }}
+        maxW={"80%"}
+        py={20}
+        px={{ base: 5, md: 10 }}>
+        <SimpleGrid
+          columns={{ base: 1, md: 2, lg: 2 }}
+          placeItems='center'
+          spacing={20}>
+          {features.map((feature, index) => (
+            // <HStack key={feature.id} align={"center"}>
+            //   <Box>
+            //     <Icon as={feature.icon} boxSize={14} />
+            //   </Box>
+            //   <VStack align={"start"}>
+            //     <Text fontWeight={600}>{feature.title}</Text>
+            //     <Text color={"gray.600"}>{feature.text}</Text>
+            //   </VStack>
+            // </HStack>
+            <Box
+              as={motion.div}
+              whileHover={{ scale: 1.1 }}
+              key={index}
+              textAlign='center'>
+              <Icon as={feature.icon} w={10} h={10} />
+              <chakra.h3 fontWeight='semibold' fontSize='2xl'>
+                {feature.title}
+              </chakra.h3>
+              <Text fontSize='md'>{feature.text}</Text>
+            </Box>
+          ))}
+        </SimpleGrid>
+      </Container>
     </>
   );
 };

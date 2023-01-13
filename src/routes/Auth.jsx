@@ -1,9 +1,23 @@
-import AuthForm from '../components/AuthForm'
+import { useState } from "react";
+
+import SignInForm from "../components/Auth/SignInForm";
+import SignUpForm from "../components/Auth/SignUpForm";
 
 const Auth = () => {
-  return (
-    <AuthForm />
-  )
-}
+  const [isSignIn, setIsSignIn] = useState(true);
 
-export default Auth
+  const switchAuth = () => {
+    setIsSignIn(!isSignIn);
+  };
+  return (
+    <>
+      {isSignIn ? (
+        <SignInForm switchAuth={switchAuth} />
+      ) : (
+        <SignUpForm switchAuth={switchAuth} />
+      )}
+    </>
+  );
+};
+
+export default Auth;

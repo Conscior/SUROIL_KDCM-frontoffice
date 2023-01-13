@@ -1,6 +1,6 @@
 import React from "react";
-import Carousel from "../components/Carousel";
-import Features from "../components/Features";
+import Carousel from "../components/Home/Carousel";
+import Features from "../components/Home/Features";
 
 import { motion } from "framer-motion";
 
