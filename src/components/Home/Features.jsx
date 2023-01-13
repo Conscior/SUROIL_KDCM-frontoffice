@@ -14,6 +14,7 @@ import {
   Icon,
   useColorModeValue,
   Link,
+  AspectRatio,
 } from "@chakra-ui/react";
 import {
   IoAnalyticsSharp,
@@ -119,7 +120,7 @@ const Features = () => {
             meilleure organisation. <br />
           </Text>
         </Stack>
-        <Flex>
+        {/* <Flex width={"100%"} border='2px solid red'>
           <Image
             rounded={"md"}
             alt={"feature image"}
@@ -129,7 +130,16 @@ const Features = () => {
             }
             objectFit={"cover"}
           />
-        </Flex>
+          
+        </Flex> */}
+        <AspectRatio ratio={16/9}>
+          <iframe
+            src='https://www.youtube.com/embed/OYa_SQYZDj4'
+            title="The ISTOBAL T'WASH30 at the Israeli supermarket chain Hatzi Hinam, by Oz Bat Galim"
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+            allowFullScreen
+          />
+        </AspectRatio>
       </SimpleGrid>
 
       {/* Second feature */}
