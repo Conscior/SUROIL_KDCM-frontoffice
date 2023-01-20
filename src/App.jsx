@@ -5,15 +5,13 @@ import RequireAuth from "./components/RequireAuth";
 
 import Auth from "./routes/Auth";
 import Contact from "./routes/Contact";
-import Home from "./routes/Home";
+import Landing from "./routes/Landing";
 import Products from "./routes/Products";
 import Product from "./routes/Product";
 import Account from "./routes/Account";
 import AfterSaleService from "./routes/AfterSaleService";
 
 import NotFound404 from "./routes/NotFound404";
-
-import { ROLES } from "./config/roles";
 
 import { AnimatePresence } from "framer-motion";
 
@@ -24,7 +22,7 @@ const App = () => {
       <Routes location={location} key={location.pathname}>
         <Route path='/' element={<BasicLayout />}>
           {/* Public Routes */}
-          <Route index element={<Home />} />
+          <Route index element={<Landing />} />
           <Route path='auth' element={<Auth />} />
           <Route path='produits' element={<Products />} />
           <Route path='produits/:productID' element={<Product />} />

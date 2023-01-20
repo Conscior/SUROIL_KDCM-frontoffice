@@ -36,6 +36,8 @@ const ProductCard = ({ product }) => {
     });
   };
 
+  const handleQuickShop = () => {};
+
   return (
     <Stack spacing={useBreakpointValue({ base: "4", md: "5" })}>
       <Box position='relative'>
@@ -75,18 +77,15 @@ const ProductCard = ({ product }) => {
         </Stack>
       </Stack>
       <Stack align='center'>
-        <Button
-          variant='suroilSolid'
-          width='full'
-          onClick={handleAddToCart}>
+        <Button variant='suroilSolid' width='full' onClick={handleAddToCart}>
           Ajouter au panier
         </Button>
-        {/* <Link
-            textDecoration='underline'
-            fontWeight='medium'
-            color={useColorModeValue("gray.600", "gray.400")}>
-            Quick shop
-          </Link> */}
+        <Button
+          variant='link'
+          textDecoration='underline'
+          onClick={handleQuickShop}>
+          Demander un devis
+        </Button>
       </Stack>
     </Stack>
   );

@@ -16,11 +16,16 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+
+import { selectCurrentUser } from "../../features/state/authSlice";
 import { useCreateAfterSaleServiceFormEntryMutation } from "../../features/api/afterSaleServiceFormEntriesApiSlice";
 
 const AfterSaleServiceForm = () => {
   const toast = useToast();
+
+  const user = useSelector(selectCurrentUser);
 
   const [createAfterSaleServiceFormEntry] =
     useCreateAfterSaleServiceFormEntryMutation();
@@ -80,6 +85,8 @@ const AfterSaleServiceForm = () => {
       nif: "",
       firstname: "",
       lastname: "",
+      email: "",
+      tel: "",
     });
     // clearFormFiels();
   };
@@ -117,6 +124,17 @@ const AfterSaleServiceForm = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (user && !isPro) {
+      setFormFields({
+        ...formFields,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+      });
+    }
+  }, [user, setFormFields]);
 
   let formHeader;
   if (isPro) {

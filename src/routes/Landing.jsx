@@ -1,10 +1,10 @@
 import React from "react";
-import Carousel from "../components/Home/Carousel";
-import Features from "../components/Home/Features";
+import Carousel from "../components/Landing/Carousel";
+import Features from "../components/Landing/Features";
 
 import { motion } from "framer-motion";
 
-const Home = () => {
+const Landing = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -16,4 +16,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Landing;

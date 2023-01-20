@@ -51,17 +51,11 @@ const shoppingCartSlice = createSlice({
       state.totalPrice = 0;
     },
     updateCart: (state) => {
-      console.log("called update cart");
       let quantity = 0;
-      // let price = 0;
-
       state.cartItems.map((item) => {
         quantity += item.product_quantity;
-        // price += item.product_quantity * item.product_price;
       });
-
       state.totalQuantity = quantity;
-      // state.totalPrice = price;
     },
   },
 });

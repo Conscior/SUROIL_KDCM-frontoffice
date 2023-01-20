@@ -47,9 +47,9 @@ const ShoppingCart = ({
   } = useDisclosure();
 
   const [store, setStore] = useState(false);
+  
   const handleStoreChange = (event) => {
     const { name, value } = event.target;
-    console.log(value);
     if (name === "store") setStore(value);
   };
 

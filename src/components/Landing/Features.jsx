@@ -132,11 +132,10 @@ const Features = () => {
           />
           
         </Flex> */}
-        <AspectRatio ratio={16/9}>
+        <AspectRatio ratio={16 / 9}>
           <iframe
             src='https://www.youtube.com/embed/OYa_SQYZDj4'
             title="The ISTOBAL T'WASH30 at the Israeli supermarket chain Hatzi Hinam, by Oz Bat Galim"
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
             allowFullScreen
           />
         </AspectRatio>
@@ -149,10 +148,10 @@ const Features = () => {
         whileInView={cardMotion.onscreen}
         viewport={{ once: true }}
         columns={{ base: 1, md: 3 }}
-        spacing={10}
+        spacing={{ base: 4, lg: 12 }}
         placeItems='center'
-        textAlign='center'
-        px='40'
+        alignItems={"start"}
+        px={{ base: 12, sm: 24, md: 6, lg: 24 }}
         py='10'
         // bgGradient={"linear(to-r, suroil.primary, kdcm.primary)"}
       >

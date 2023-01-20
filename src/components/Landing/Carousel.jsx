@@ -11,11 +11,13 @@ import {
 } from "@chakra-ui/react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+
+import { Navigation, Pagination, Autoplay } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-
-import { Navigation } from "swiper";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
 
 const Carousel = () => {
   const cards = [
@@ -26,8 +28,11 @@ const Carousel = () => {
 
   return (
     <Swiper
-      navigation={true}
-      modules={[Navigation]}
+      modules={[Navigation, Pagination, Autoplay]}
+      navigation
+      pagination={{ clickable: true }}
+      autoplay={{ delay: 5000 }}
+      loop
       style={{ height: "700px", width: "100%" }}>
       <SwiperSlide>
         <Flex
@@ -51,34 +56,13 @@ const Carousel = () => {
                 fontSize={useBreakpointValue({ base: "3xl", md: "4xl" })}>
                 Leader dans son domaine depuis 1994
               </Text>
-              {/* <Stack direction={"row"}>
-                <Button
-                  bg={"primary"}
-                  rounded={"full"}
-                  color={"white"}
-                  _hover={{ bg: "blue.500" }}>
-                  Action
-                </Button>
-              </Stack> */}
             </Stack>
           </VStack>
         </Flex>
       </SwiperSlide>
-      {/* <SwiperSlide>
-        <AspectRatio>
-          <iframe
-            src='https://www.youtube.com/embed/OYa_SQYZDj4'
-            title="The ISTOBAL T'WASH30 at the Israeli supermarket chain Hatzi Hinam, by Oz Bat Galim"
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-            allowFullScreen
-          />
-        </AspectRatio>
-      </SwiperSlide> */}
       {cards.map((imgUrl, index) => (
         <SwiperSlide key={index}>
-          {/* <img src={imgUrl} /> */}
           <Box
-            // key={index}
             height={"6xl"}
             position='relative'
             backgroundPosition='center'

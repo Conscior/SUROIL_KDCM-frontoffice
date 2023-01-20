@@ -46,7 +46,7 @@ const Footer = () => {
         spacing={{ base: 8, md: 0 }}
         justifyContent='space-between'
         direction={{ base: "column", md: "row" }}>
-        <Box maxW='300px'>
+        <Box maxW='300px' alignSelf='center'>
           <HStack justify={"center"} align={"center"}>
             <SUROIL />
             <KDCM />
@@ -91,24 +91,14 @@ const Footer = () => {
               Contact
             </Text>
             <VStack spacing={2} alignItems='flex-start' color='gray.500'>
-              <Link as={ReachLink} to='/nous-contacter' >Nous contacter</Link>
+              <Link as={ReachLink} to='/nous-contacter'>
+                Nous contacter
+              </Link>
             </VStack>
-            {/* <VStack spacing={2} alignItems='flex-start' color='gray.500'>
-              <Link as={ReachLink} to='/'>Informations</Link>
-            </VStack> */}
           </VStack>
         </HStack>
-      </Stack>
 
-      <Divider my={4} />
-
-      <Stack
-        direction={{ base: "column", md: "row" }}
-        spacing={3}
-        justifyContent='space-between'>
-        <Text fontSize='md'>© 2023 SUROIL-KDCM. Tous droits réservés</Text>
-        <Stack spacing={4} direction={{ base: "column", md: "row" }}>
-          {/* Social links */}
+        <HStack alignSelf={"end"}>
           {socialLinks.map((link) => (
             <IconButton
               variant={"link"}
@@ -116,7 +106,6 @@ const Footer = () => {
               size={"md"}
               key={link.title}
               aria-label={link.title}
-              // icon={<link.icon boxSize={12} />}
               icon={
                 <Icon boxSize={12}>
                   <link.icon />
@@ -124,8 +113,12 @@ const Footer = () => {
               }
             />
           ))}
-        </Stack>
+        </HStack>
       </Stack>
+
+      <Divider my={4} />
+
+      <Text textAlign={"center"}>© 2023 SUROIL-KDCM. Tous droits réservés</Text>
     </Box>
   );
 };
