@@ -35,10 +35,10 @@ const Footer = () => {
     <Box
       as='footer'
       width={"100%"}
-      bg='red.800'
+      bg='#1F7C48'
       color={"white"}
       borderTop='1px solid'
-      borderColor='gray.300'
+      borderColor=' .300'
       p={{ base: 5, md: 8 }}
       mt={4}
       marginInline='auto'>
@@ -60,15 +60,15 @@ const Footer = () => {
           d={{ base: "none", sm: "flex" }}
           justifyContent={{ sm: "space-between", md: "normal" }}
           alignItems={"start"}>
-          <Text fontSize='md' fontWeight='bold'>
+          <Link as={ReachLink} fontSize='md' fontWeight='bold'>
             Présentation
-          </Text>
+          </Link>
 
           <VStack spacing={4} alignItems='flex-start'>
             <Text fontSize='md' fontWeight='bold'>
               Produits
             </Text>
-            <VStack spacing={2} alignItems='flex-start' color='gray.500'>
+            <VStack spacing={2} alignItems='flex-start' color='gray.300' >
               <Link as={ReachLink} to='/produits'>
                 Nos produits
               </Link>
@@ -79,7 +79,7 @@ const Footer = () => {
             <Text fontSize='md' fontWeight='bold'>
               Nos services
             </Text>
-            <VStack spacing={2} alignItems='flex-start' color='gray.500'>
+            <VStack spacing={2} alignItems='flex-start' color='gray.300'>
               <Link as={ReachLink} to='/service-apres-vente'>
                 Services aprés-ventes
               </Link>
@@ -90,7 +90,7 @@ const Footer = () => {
             <Text fontSize='md' fontWeight='bold'>
               Contact
             </Text>
-            <VStack spacing={2} alignItems='flex-start' color='gray.500'>
+            <VStack spacing={2} alignItems='flex-start' color='gray.300'>
               <Link as={ReachLink} to='/nous-contacter'>
                 Nous contacter
               </Link>

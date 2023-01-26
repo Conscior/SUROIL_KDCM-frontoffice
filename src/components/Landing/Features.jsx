@@ -166,12 +166,12 @@ const Features = () => {
             textAlign='center'
             pos='relative'
             borderTop={"10px solid"}
-            borderTopColor={"suroil.primary"}>
+            borderTopColor={"suroilRed.600"}>
             <Flex
               p={2}
               w='max-content'
               color='white'
-              bgColor={"suroil.primary"}
+              bgColor={"suroilRed.600"}
               // bgGradient='linear(to-br, #228be6, #15aabf)'
               // bgGradient={"linear(to-r, suroil.primary, kdcm.primary)"}
               rounded='md'
@@ -199,12 +199,15 @@ const Features = () => {
         bg='red.800'
         bgGradient={"linear(to-r, red.700, red.900)"}
         color={"white"}>
-        <Stack spacing={16} as={Container} maxW={"80%"} textAlign={"center"}>
-          <Heading fontSize={"3xl"}>
+        <Stack spacing={16} as={Container} maxW={"100%"} textAlign={"center"}>
+          {/* <Heading fontSize={"3xl"}> */}
+          <Heading fontSize={{ base: "2xl", sm: "3xl", md: "2lg", lg: "3xl", xl: "4xl", '2xl': "9xl" }} >
             Commercialisation des équipements professionnels <br /> de nettoyage
             et de garage
           </Heading>
-          <Text fontSize={"xl"} textAlign={"justify"}>
+          <Text
+            fontSize={{ base: "sm", sm: "3xl", md: "md", lg: "xl", xl: "xl", '2xl': "6xl" }}
+            textAlign={"justify"}>
             KDCM est Créée dans le but de répondre aux exigences de la clientèle
             en matière d'équipements de nettoyage et de graissage, elle s'est
             vite intéressée à la distribution et dans le but d'agrandir son

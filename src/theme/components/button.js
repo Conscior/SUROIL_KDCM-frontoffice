@@ -3,25 +3,26 @@ export const Button = {
   baseStyle: {},
   variants: {
     suroilSolid: {
-      bg: "suroil.primary",
+      bg: "suroilRed.600",
       color: "white",
       _hover: {
+        backgroundColor: "red.600",
         _disabled: {
-          bg: "suroil.primary",
-          backgroundColor: "suroil.primary",
-          borderColor: "suroil.primary",
+          bg: "suroilRed.600",
+          backgroundColor: "suroilRed.600",
+          borderColor: "suroilRed.600",
           color: "white",
         },
       },
       _disabled: {
-        bg: "suroil.primary",
-        backgroundColor: "suroil.primary",
-        borderColor: "suroil.primary",
+        bg: "suroilRed.600",
+        backgroundColor: "suroilRed.600",
+        borderColor: "suroilRed.600",
         color: "white",
         _hover: {
-          bg: "suroil.primary",
-          backgroundColor: "suroil.primary",
-          borderColor: "suroil.primary",
+          bg: "suroilRed.600",
+          backgroundColor: "suroilRed.600",
+          borderColor: "suroilRed.600",
           color: "white",
         },
       },
@@ -36,9 +37,12 @@ export const Button = {
     },
     suroilOutline: {
       bg: "white",
-      color: "suroil.primary",
+      color: "suroilRed.600",
       border: "2px solid",
-      borderColor: "suroil.primary",
+      borderColor: "suroilRed.600",
+    },
+    suroilGhost: {
+      color: "suroilRed.primary"
     },
     kdcmSolid: {
       bg: "kdcm.primary",

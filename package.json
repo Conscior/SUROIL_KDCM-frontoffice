@@ -5,7 +5,7 @@
   "description": "Front office Frontend of the SUROIL-KDCM project",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint --max-warnings=0 src"

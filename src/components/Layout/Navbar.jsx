@@ -5,8 +5,6 @@ import {
   IconButton,
   Button,
   ButtonGroup,
-  useDisclosure,
-  useColorModeValue,
   Stack,
   VStack,
   HStack,
@@ -20,6 +18,8 @@ import {
   Text,
   Link,
   useToast,
+  useDisclosure,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import {
   IoCartOutline,
@@ -85,7 +85,10 @@ const Navbar = () => {
       <Box
         as='nav'
         role={"navigation"}
-        bg='bg-surface'
+        position="sticky"
+        top="0px"
+        zIndex="dropdown"
+        bg="suroilWhite"
         px={4}
         boxShadow={useColorModeValue("sm", "sm-dark")}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
@@ -96,35 +99,30 @@ const Navbar = () => {
           </HStack>
 
           {/* Links and actions */}
-          <HStack spacing={"10"} display={{ base: "none", lg: "flex" }}>
+          <HStack spacing={"20"} display={{ base: "none", lg: "flex" }}>
             <ButtonGroup variant='link' spacing='8'>
               <Button
-                as={NavLink}
+                as={ReachLink}
                 to='/'
-                style={({ isActive }) =>
-                  isActive ? { color: "black" } : { color: "grey" }
-                }
-                _hover={{}}>
+                _hover={{ color: "suroilRed.600" }}>
                 Présentation
               </Button>
               <Button
-                as={NavLink}
+                as={ReachLink}
                 to='/produits'
-                style={({ isActive }) =>
-                  isActive ? { color: "black" } : { color: "grey" }
-                }
-                _hover={{}}>
+                _hover={{ color: "suroilRed.600" }}>
                 Produits
               </Button>
               <Menu isLazy autoSelect={false}>
                 <MenuButton
                   as={Button}
                   rightIcon={<IoChevronDown />}
-                  _hover={{}}>
+                  _hover={{ color: "suroilRed.600" }}
+                  _active={{ color: "suroilRed.600" }}>
                   Nos services
                 </MenuButton>
                 <MenuList zIndex='dropdown'>
-                  <MenuItem as={NavLink} to='/service-apres-vente'>
+                  <MenuItem as={ReachLink} to='/service-apres-vente'>
                     Service aprés vente
                   </MenuItem>
                 </MenuList>
@@ -133,11 +131,12 @@ const Navbar = () => {
                 <MenuButton
                   as={Button}
                   rightIcon={<IoChevronDown />}
-                  _hover={{}}>
+                  _hover={{ color: "suroilRed.600" }}
+                  _active={{ color: "suroilRed.600" }}>
                   Contact
                 </MenuButton>
                 <MenuList zIndex='dropdown'>
-                  <MenuItem as={NavLink} to='/nous-contacter'>
+                  <MenuItem as={ReachLink} to='/nous-contacter' >
                     Nous contacter
                   </MenuItem>
                 </MenuList>
@@ -151,6 +150,7 @@ const Navbar = () => {
                 fontSize='3xl'
                 icon={<IoCartOutline />}
                 onClick={onShoppingCartOpen}
+                _hover={{ color: "suroilRed.600" }}
               />
               {user ? (
                 <Menu isLazy autoSelect={false}>
@@ -202,13 +202,7 @@ const Navbar = () => {
                 </Menu>
               ) : (
                 <Link to='/auth' as={ReachLink}>
-                  <Button
-                    bg={"primary"}
-                    color={"white"}
-                    // colorScheme={"teal"}
-                  >
-                    Se connecter
-                  </Button>
+                  <Button variant={"ghost"} color="suroilRed.primary">Se connecter</Button>
                 </Link>
               )}
             </HStack>
@@ -216,14 +210,9 @@ const Navbar = () => {
 
           {/* Mobile menu button */}
           <IconButton
-            size={"md"}
-            icon={
-              isMobileViewOpen ? (
-                <Icon as={IoCloseOutline} />
-              ) : (
-                <Icon as={IoMenuOutline} />
-              )
-            }
+            variant='link'
+            fontSize='3xl'
+            icon={isMobileViewOpen ? <IoCloseOutline /> : <IoMenuOutline />}
             aria-label={"Open Menu"}
             display={{ lg: "none", xl: "none" }}
             onClick={isMobileViewOpen ? onMobileViewClose : onMobileViewOpen}
@@ -231,19 +220,36 @@ const Navbar = () => {
         </Flex>
 
         {isMobileViewOpen ? (
-          <Box pb={4} display={{ lg: "none" }}>
-            <Stack as={"nav"} spacing={4}>
-              {links.map((link) => (
-                <Link
-                  as={NavLink}
-                  to={link.href}
-                  key={link.name}
-                  textDecoration='none'
-                  _hover={{ textDecoration: "none" }}
-                  style={({ isActive }) => (isActive ? {} : { color: "red" })}>
-                  {link.name}
-                </Link>
-              ))}
+          <Box p={4} display={{ lg: "none" }}>
+            <Stack as={"nav"} spacing={4} textAlign='center'>
+              <Link
+                as={ReachLink}
+                to='/'
+                _hover={{ color: "suroil.primary" }}
+                _active={{ color: "suroil.primary" }}>
+                Présentation
+              </Link>
+              <Link
+                as={ReachLink}
+                to='/produits'
+                _hover={{ color: "suroil.primary" }}
+                _active={{ color: "suroil.primary" }}>
+                Produits
+              </Link>
+              <Link
+                as={ReachLink}
+                to='/service-apres-vente'
+                _hover={{ color: "suroil.primary" }}
+                _active={{ color: "suroil.primary" }}>
+                Nos services
+              </Link>
+              <Link
+                as={ReachLink}
+                to='/nous-contacter'
+                _hover={{ color: "suroil.primary" }}
+                _active={{ color: "suroil.primary" }}>
+                Contact
+              </Link>
             </Stack>
           </Box>
         ) : null}
