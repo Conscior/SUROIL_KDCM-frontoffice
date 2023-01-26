@@ -35,7 +35,7 @@ const Footer = () => {
     <Box
       as='footer'
       width={"100%"}
-      bg='#1F7C48'
+      bg='#C4414C'
       color={"white"}
       borderTop='1px solid'
       borderColor=' .300'
