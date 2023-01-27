@@ -1,15 +1,12 @@
 import {
   Box,
-  Stack,
-  HStack,
-  VStack,
+  Container,
   Link,
-  Divider,
+  SimpleGrid,
+  Stack,
   Text,
-  IconButton,
-  Icon,
-  Heading,
-} from "@chakra-ui/react";
+  useColorModeValue,
+} from '@chakra-ui/react';
 import {
   IoLogoFacebook,
   IoLogoInstagram,
@@ -47,13 +44,7 @@ const Footer = () => {
         spacing={{ base: 8, md: 0 }}
         justifyContent='space-between'
         direction={{ base: "column", md: "row" }}>
-        <VStack >
-          <Heading>SUROIL KDCM</Heading>
-          <Text>Lot. Coline Al-Zina Lot n 30 - Bab Ezzouar - Alger</Text>
-          <Text>Mobile : +213 (0)6 60 57 11 42 / (0)6 60 57 18 06</Text>
-          <Text></Text>
-        </VStack>
-        {/* <Box maxW='300px' alignSelf='center'>
+        <Box maxW='300px' alignSelf='center'>
           <HStack justify={"center"} align={"center"}>
             <SUROIL />
             <KDCM />
@@ -61,7 +52,7 @@ const Footer = () => {
           <Text mt={2} fontSize='md'>
             Leader dans son domaine depuis 1994
           </Text>
-        </Box> */}
+        </Box>
         <HStack
           spacing={4}
           d={{ base: "none", sm: "flex" }}
@@ -105,7 +96,7 @@ const Footer = () => {
           </VStack>
         </HStack>
 
-        <HStack alignSelf={"start"}>
+        <HStack alignSelf={"end"}>
           {socialLinks.map((link) => (
             <IconButton
               variant={"link"}
@@ -113,7 +104,6 @@ const Footer = () => {
               size={"md"}
               key={link.title}
               aria-label={link.title}
-              _hover={{color: "suroilWhite"}}
               icon={
                 <Icon boxSize={12}>
                   <link.icon />
