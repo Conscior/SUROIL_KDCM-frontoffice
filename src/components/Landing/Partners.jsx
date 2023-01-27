@@ -41,7 +41,12 @@ const Partners = () => {
         pagination={{ clickable: true }}
         autoplay={{ delay: 5000 }}
         loop
-        style={{ height: "200px", width: "80%" }}>
+        style={{
+          height: "200px",
+          width: "80%",
+          "--swiper-pagination-color": "#1F7C48",
+          "--swiper-navigation-color": "#1F7C48",
+        }}>
         <SwiperSlide style={{ padding: "0 50px 0 50px" }}>
           <SimpleGrid
             as={Center}
@@ -49,30 +54,33 @@ const Partners = () => {
             placeItems='center'
             spacing={10}
             mb={4}>
-            <Box>
-              <Image
-                src='https://suroilkdcm.com/wp-content/uploads/2021/01/klindex.jpg'
-                alt='Klindex'
-              />
-            </Box>
-            <Box>
-              <Image
-                src='https://suroilkdcm.com/wp-content/uploads/2021/01/fiorentini.jpg'
-                alt='Fiorentini'
-              />
-            </Box>
-            <Box>
-              <Image
-                src='https://suroilkdcm.com/wp-content/uploads/2021/01/filmop.jpg'
-                alt='Filmop'
-              />
-            </Box>
-            <Box>
-              <Image
-                src='https://suroilkdcm.com/wp-content/uploads/2021/01/comoo.png'
-                alt='Comoo'
-              />
-            </Box>
+            <Image
+              boxSize={"20vh"}
+              objectFit={"contain"}
+              src='https://suroilkdcm.com/wp-content/uploads/2021/01/klindex.jpg'
+              alt='Klindex'
+            />
+
+            <Image
+              boxSize={"20vh"}
+              objectFit={"contain"}
+              src='https://suroilkdcm.com/wp-content/uploads/2021/01/fiorentini.jpg'
+              alt='Fiorentini'
+            />
+
+            <Image
+              boxSize={"20vh"}
+              objectFit={"contain"}
+              src='https://suroilkdcm.com/wp-content/uploads/2021/01/filmop.jpg'
+              alt='Filmop'
+            />
+
+            <Image
+              boxSize={"20vh"}
+              objectFit={"contain"}
+              src='https://suroilkdcm.com/wp-content/uploads/2021/01/comoo.png'
+              alt='Comoo'
+            />
           </SimpleGrid>
         </SwiperSlide>
         <SwiperSlide style={{ padding: "0 50px 0 50px" }}>
@@ -82,30 +90,33 @@ const Partners = () => {
             placeItems='center'
             spacing={10}
             mb={4}>
-            <Box>
-              <Image
-                src='https://suroilkdcm.com/wp-content/uploads/2021/01/cisne.png'
-                alt='Cisne'
-              />
-            </Box>
-            <Box>
-              <Image
-                src='https://suroilkdcm.com/wp-content/uploads/2021/01/mazzoni.png'
-                alt='Mazzoni'
-              />
-            </Box>
-            <Box>
-              <Image
-                src='https://suroilkdcm.com/wp-content/uploads/2021/10/telechargement.jpg'
-                alt='Adam Pumps'
-              />
-            </Box>
-            <Box>
-              <Image
-                src='https://suroilkdcm.com/wp-content/uploads/2021/10/logo.png'
-                alt='Comet'
-              />
-            </Box>
+            <Image
+              boxSize={"20vh"}
+              objectFit={"contain"}
+              src='https://suroilkdcm.com/wp-content/uploads/2021/01/cisne.png'
+              alt='Cisne'
+            />
+
+            <Image
+              boxSize={"20vh"}
+              objectFit={"contain"}
+              src='https://suroilkdcm.com/wp-content/uploads/2021/01/mazzoni.png'
+              alt='Mazzoni'
+            />
+
+            <Image
+              boxSize={"20vh"}
+              objectFit={"contain"}
+              src='https://suroilkdcm.com/wp-content/uploads/2021/10/telechargement.jpg'
+              alt='Adam Pumps'
+            />
+
+            <Image
+              boxSize={"20vh"}
+              objectFit={"contain"}
+              src='https://suroilkdcm.com/wp-content/uploads/2021/10/logo.png'
+              alt='Comet'
+            />
           </SimpleGrid>
         </SwiperSlide>
         <SwiperSlide style={{ padding: "0 50px 0 50px" }}>
@@ -115,30 +126,33 @@ const Partners = () => {
             placeItems='center'
             spacing={10}
             mb={4}>
-            <Box>
-              <Image
-                src='https://suroilkdcm.com/wp-content/uploads/2021/01/usag.png'
-                alt='USAG'
-              />
-            </Box>
-            <Box>
-              <Image
-                src='https://suroilkdcm.com/wp-content/uploads/2021/01/unger.png'
-                alt='UNGER'
-              />
-            </Box>
-            <Box>
-              <Image
-                src='https://suroilkdcm.com/wp-content/uploads/2021/01/tencn.png'
-                alt='TECNOVAP'
-              />
-            </Box>
-            <Box>
-              <Image
-                src='https://suroilkdcm.com/wp-content/uploads/2021/01/teco.png'
-                alt='TECO'
-              />
-            </Box>
+            <Image
+              boxSize={"20vh"}
+              objectFit={"contain"}
+              src='https://suroilkdcm.com/wp-content/uploads/2021/01/usag.png'
+              alt='USAG'
+            />
+            <Image
+              boxSize={"20vh"}
+              objectFit={"contain"}
+              // align=""
+              src='https://suroilkdcm.com/wp-content/uploads/2021/01/unger.png'
+              alt='UNGER'
+            />
+
+            <Image
+              boxSize={"20vh"}
+              objectFit={"contain"}
+              src='https://suroilkdcm.com/wp-content/uploads/2021/01/tencn.png'
+              alt='TECNOVAP'
+            />
+
+            <Image
+              boxSize={"20vh"}
+              objectFit={"contain"}
+              src='https://suroilkdcm.com/wp-content/uploads/2021/01/teco.png'
+              alt='TECO'
+            />
           </SimpleGrid>
         </SwiperSlide>
         <SwiperSlide style={{ padding: "0 50px 0 50px" }}>
@@ -148,30 +162,33 @@ const Partners = () => {
             placeItems='center'
             spacing={10}
             mb={4}>
-            <Box>
-              <Image
-                src='https://suroilkdcm.com/wp-content/uploads/2021/01/rasm.png'
-                alt='RAASM'
-              />
-            </Box>
-            <Box>
-              <Image
-                src='https://suroilkdcm.com/wp-content/uploads/2021/01/omcn.png'
-                alt='OMCN'
-              />
-            </Box>
-            <Box>
-              <Image
-                src='https://suroilkdcm.com/wp-content/uploads/2021/01/tennat.jpg'
-                alt='TENNANT'
-              />
-            </Box>
-            <Box>
-              <Image
-                src='https://suroilkdcm.com/wp-content/uploads/2021/01/mtd.png'
-                alt='MTD'
-              />
-            </Box>
+            <Image
+              boxSize={"20vh"}
+              objectFit={"contain"}
+              src='https://suroilkdcm.com/wp-content/uploads/2021/01/rasm.png'
+              alt='RAASM'
+            />
+
+            <Image
+              boxSize={"20vh"}
+              objectFit={"contain"}
+              src='https://suroilkdcm.com/wp-content/uploads/2021/01/omcn.png'
+              alt='OMCN'
+            />
+
+            <Image
+              boxSize={"20vh"}
+              objectFit={"contain"}
+              src='https://suroilkdcm.com/wp-content/uploads/2021/01/tennat.jpg'
+              alt='TENNANT'
+            />
+
+            <Image
+              boxSize={"20vh"}
+              objectFit={"contain"}
+              src='https://suroilkdcm.com/wp-content/uploads/2021/01/mtd.png'
+              alt='MTD'
+            />
           </SimpleGrid>
         </SwiperSlide>
       </Swiper>
