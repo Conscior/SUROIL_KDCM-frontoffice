@@ -42,7 +42,14 @@ export const Button = {
       borderColor: "suroilRed.600",
     },
     suroilGhost: {
-      color: "suroilRed.primary"
+      color: "suroilRed.primary",
+      bg: "transparent",
+      _hover: {
+        color: "suroilRed.500",
+      },
+      _active: {
+        color: "suroilRed.primary",
+      },
     },
     kdcmSolid: {
       bg: "kdcm.primary",

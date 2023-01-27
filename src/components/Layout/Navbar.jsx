@@ -26,6 +26,7 @@ import {
   IoChevronDown,
   IoCloseOutline,
   IoMenuOutline,
+  IoLogInOutline,
 } from "react-icons/io5";
 
 import { NavLink, Link as ReachLink, useNavigate } from "react-router-dom";
@@ -87,7 +88,7 @@ const Navbar = () => {
       <Box
         as='nav'
         role={"navigation"}
-        fontFamily="heading"
+        fontFamily='heading'
         position='sticky'
         top='0px'
         zIndex='dropdown'
@@ -106,15 +107,16 @@ const Navbar = () => {
             {/* <Link className="nav-link">Test</Link> */}
             <ButtonGroup variant='link' spacing='8' colorScheme={"black"}>
               <Button
+                // className={({isActive}) => {return isActive ? 'nav-link nav-link-active' : 'nav-link'}}
                 className='nav-link'
-                as={ReachLink}
+                as={NavLink}
                 to='/'
                 _hover={{ color: "suroilRed.600" }}>
                 Présentation
               </Button>
               <Button
                 className='nav-link'
-                as={ReachLink}
+                as={NavLink}
                 to='/produits'
                 _hover={{ color: "suroilRed.600" }}>
                 Produits
@@ -129,7 +131,7 @@ const Navbar = () => {
                   Nos services
                 </MenuButton>
                 <MenuList zIndex='dropdown'>
-                  <MenuItem as={ReachLink} to='/service-apres-vente'>
+                  <MenuItem as={NavLink} to='/service-apres-vente'>
                     Service aprés vente
                   </MenuItem>
                 </MenuList>
@@ -144,7 +146,7 @@ const Navbar = () => {
                   Contact
                 </MenuButton>
                 <MenuList zIndex='dropdown'>
-                  <MenuItem as={ReachLink} to='/nous-contacter'>
+                  <MenuItem as={NavLink} to='/nous-contacter'>
                     Nous contacter
                   </MenuItem>
                 </MenuList>
@@ -200,7 +202,7 @@ const Navbar = () => {
                       </MenuItem>
                     ))} */}
                     <MenuGroup title='Profile'>
-                      <MenuItem as={ReachLink} to='/compte'>
+                      <MenuItem as={NavLink} to='/compte'>
                         Mon compte
                       </MenuItem>
                     </MenuGroup>
@@ -209,8 +211,10 @@ const Navbar = () => {
                   </MenuList>
                 </Menu>
               ) : (
-                <Link to='/auth' as={ReachLink}>
-                  <Button color='suroilRed.400' bgColor={"suroilWhite"} _hover={{bgColor: "suroilWhite" }}>
+                <Link to='/auth' as={NavLink}>
+                  <Button
+                    variant={"suroilGhost"}
+                    rightIcon={<IoLogInOutline fontSize={"4vh"} />}>
                     Se connecter
                   </Button>
                 </Link>
@@ -233,28 +237,28 @@ const Navbar = () => {
           <Box p={4} display={{ lg: "none" }}>
             <Stack as={"nav"} spacing={4} textAlign='center'>
               <Link
-                as={ReachLink}
+                as={NavLink}
                 to='/'
                 _hover={{ color: "suroil.primary" }}
                 _active={{ color: "suroil.primary" }}>
                 Présentation
               </Link>
               <Link
-                as={ReachLink}
+                as={NavLink}
                 to='/produits'
                 _hover={{ color: "suroil.primary" }}
                 _active={{ color: "suroil.primary" }}>
                 Produits
               </Link>
               <Link
-                as={ReachLink}
+                as={NavLink}
                 to='/service-apres-vente'
                 _hover={{ color: "suroil.primary" }}
                 _active={{ color: "suroil.primary" }}>
                 Nos services
               </Link>
               <Link
-                as={ReachLink}
+                as={NavLink}
                 to='/nous-contacter'
                 _hover={{ color: "suroil.primary" }}
                 _active={{ color: "suroil.primary" }}>

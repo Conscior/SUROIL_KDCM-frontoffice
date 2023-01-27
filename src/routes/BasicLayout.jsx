@@ -12,6 +12,7 @@ import { setCredentials } from "../features/state/authSlice";
 import Navbar from "../components/Layout/Navbar";
 import Main from "../components/Layout/Main";
 import Footer from "../components/Layout/Footer";
+import Header from "../components/Layout/Header";
 
 const BasicLayout = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const BasicLayout = () => {
   return (
     <>
       <Flex direction='column' flex='1'>
+        <Header />
         <Navbar />
 
         <Main>

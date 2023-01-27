@@ -9,7 +9,7 @@ import {
   AspectRatio,
   useBreakpointValue,
   SimpleGrid,
-  Image
+  Image,
 } from "@chakra-ui/react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -23,8 +23,11 @@ import "swiper/css/autoplay";
 
 const Partners = () => {
   return (
-    <VStack>
-      <Heading>Nos Partenaires</Heading>
+    <VStack py='10'>
+      <Heading fontSize="md" color="suroilRed.500" bg="#EBE6DF" p="1.5" borderRadius={"3xl"} border={"2px solid #EBE6DF"}>
+        Nos Partenaires
+      </Heading>
+      <Heading color='suroilRed.500'>Ils nous font confiance</Heading>
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation

@@ -17,6 +17,7 @@ import {
   AspectRatio,
   Center,
   Button,
+  Divider,
 } from "@chakra-ui/react";
 import {
   IoAnalyticsSharp,
@@ -136,9 +137,6 @@ const BestSellerCard = ({ img, category, name, price }) => {
         <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
           {name}
         </Heading>
-        <Text fontWeight={800} fontSize={"xl"}>
-          {price} DZD
-        </Text>
         <VStack>
           <Button>Ajouter au panier</Button>
           <Button
@@ -167,7 +165,7 @@ const CategoryCard = ({ img, category }) => {
       justifyContent={"center"}>
       <Flex
         w={"full"}
-        h={"100vh"}
+        h={"60vh"}
         backgroundImage={`url(${img})`}
         backgroundSize={"cover"}
         backgroundPosition={"center"}
@@ -183,7 +181,7 @@ const CategoryCard = ({ img, category }) => {
         <Center
           as={Heading}
           w='80%'
-          h={"20%"}
+          minH='20%'
           textAlign='center'
           color='suroilWhite'
           border='3px solid #ED444B'
@@ -203,6 +201,7 @@ const Features = () => {
       <SimpleGrid
         columns={{ base: 1, md: 2 }}
         spacing={10}
+        bg="suroilWhite"
         px='10'
         py='10'
         fontFamily={"body"}>
@@ -314,19 +313,16 @@ const Features = () => {
             img='https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
             category='Categorie 1'
             name={"Produit 1"}
-            price={4500}
           />
           <BestSellerCard
             img='https://images.unsplash.com/photo-1550963295-019d8a8a61c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
             category='Categorie 2'
             name={"Produit 2"}
-            price={1600}
           />
           <BestSellerCard
             img='https://images.unsplash.com/photo-1584792286782-a5dc95dc2250?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=386&q=80'
             category='Categorie 3'
             name={"Produit 3"}
-            price={2400}
           />
         </SimpleGrid>
       </VStack>
@@ -373,8 +369,9 @@ const Features = () => {
       </Box> */}
 
       {/* Nos produits */}
-      <VStack>
-        <Heading>Nos produits</Heading>
+      <VStack py='10'>
+        <Heading fontSize="md" color="suroilRed.500" bg="#EBE6DF" p="1.5" borderRadius={"3xl"} border={"2px solid #EBE6DF"}>Nos produits</Heading>
+        <Heading color="suroilRed.500" >Découvrez nos differents produits</Heading>
         <SimpleGrid
           as={motion.div}
           initial={cardMotion.offscreen}
@@ -434,6 +431,9 @@ const Features = () => {
           ))}
         </SimpleGrid>
       </VStack> */}
+
+      <Divider />
+
       <Partners />
     </>
   );

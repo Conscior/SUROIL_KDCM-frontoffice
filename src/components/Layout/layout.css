@@ -19,10 +19,25 @@
 
 .nav-link:hover{
   color: #ED1C25;
-  text-decoration: dashed;
+  /* text-decoration: dashed; */
 }
 
 .nav-link:active::after,
 .nav-link:hover:after {
     width: 100%;
+}
+
+.nav-link-active {
+  color: #ED1C25;
+  content: "";
+  position: absolute;
+  background-color: #ED1C25;
+  height: 3px;
+  width: 100%;
+  left: 0;
+  bottom: -5px;
+  transition: 0.3s;
+}
+.nav-link-active:after{
+  width: 100%;
 }
