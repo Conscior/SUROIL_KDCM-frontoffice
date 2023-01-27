@@ -201,20 +201,19 @@ const Features = () => {
       <SimpleGrid
         columns={{ base: 1, md: 2 }}
         spacing={10}
-        bg="suroilWhite"
         px='10'
         py='10'
         fontFamily={"body"}>
         <Stack spacing={4}>
           <Text
             textTransform={"uppercase"}
-            color={"white"}
+            color={"suroilRed.500"}
             fontWeight={600}
             fontSize={"xl"}
-            bg={"primary"}
+            bg={"suroilWhite"}
             p={2}
             alignSelf={"flex-start"}
-            rounded={"xl"}>
+            borderRadius={"3xl"}>
             Qui sommes nous
           </Text>
           <Heading>Fournisseur d'équipements de Nettoyage et de garage</Heading>
@@ -370,8 +369,18 @@ const Features = () => {
 
       {/* Nos produits */}
       <VStack py='10'>
-        <Heading fontSize="md" color="suroilRed.500" bg="#EBE6DF" p="1.5" borderRadius={"3xl"} border={"2px solid #EBE6DF"}>Nos produits</Heading>
-        <Heading color="suroilRed.500" >Découvrez nos differents produits</Heading>
+        <Heading
+          fontSize='xl'
+          color='suroilRed.500'
+          bg='#EBE6DF'
+          p='1.5'
+          borderRadius={"3xl"}
+          border={"2px solid #EBE6DF"}>
+          Nos produits
+        </Heading>
+        <Heading color='suroilRed.500'>
+          Découvrez nos differents produits
+        </Heading>
         <SimpleGrid
           as={motion.div}
           initial={cardMotion.offscreen}

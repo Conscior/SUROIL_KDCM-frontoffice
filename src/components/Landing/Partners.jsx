@@ -26,7 +26,7 @@ const Partners = () => {
   return (
     <VStack py='10'>
       <Heading
-        fontSize='md'
+        fontSize='xl'
         color='suroilRed.500'
         bg='#EBE6DF'
         p='1.5'
