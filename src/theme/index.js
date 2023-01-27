@@ -1,6 +1,15 @@
 import { extendTheme } from "@chakra-ui/react";
 import { Button } from "./components/button";
+
+import '@fontsource/inter'
+import '@fontsource/roboto'
+
+
 export const theme = extendTheme({
+  fonts: {
+    heading: `'Inter', sans-serif`,
+    body: `'Roboto', sans-serif`,
+  },
   colors: {
     // suroilRed: {
     //   100: "#FCE6E9",

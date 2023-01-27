@@ -39,6 +39,8 @@ import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import { ReactComponent as SUROIL } from "../../assets/SUROIL.svg";
 import { ReactComponent as KDCM } from "../../assets/KDCM.svg";
 
+import "./layout.css";
+
 const links = [
   { name: "Présentation", href: "/" },
   { name: "Produits", href: "/produits" },
@@ -85,10 +87,11 @@ const Navbar = () => {
       <Box
         as='nav'
         role={"navigation"}
-        position="sticky"
-        top="0px"
-        zIndex="dropdown"
-        bg="suroilWhite"
+        fontFamily="heading"
+        position='sticky'
+        top='0px'
+        zIndex='dropdown'
+        bg='white'
         px={4}
         boxShadow={useColorModeValue("sm", "sm-dark")}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
@@ -100,14 +103,17 @@ const Navbar = () => {
 
           {/* Links and actions */}
           <HStack spacing={"20"} display={{ base: "none", lg: "flex" }}>
-            <ButtonGroup variant='link' spacing='8'>
+            {/* <Link className="nav-link">Test</Link> */}
+            <ButtonGroup variant='link' spacing='8' colorScheme={"black"}>
               <Button
+                className='nav-link'
                 as={ReachLink}
                 to='/'
                 _hover={{ color: "suroilRed.600" }}>
                 Présentation
               </Button>
               <Button
+                className='nav-link'
                 as={ReachLink}
                 to='/produits'
                 _hover={{ color: "suroilRed.600" }}>
@@ -115,6 +121,7 @@ const Navbar = () => {
               </Button>
               <Menu isLazy autoSelect={false}>
                 <MenuButton
+                  className='nav-link'
                   as={Button}
                   rightIcon={<IoChevronDown />}
                   _hover={{ color: "suroilRed.600" }}
@@ -129,6 +136,7 @@ const Navbar = () => {
               </Menu>
               <Menu isLazy autoSelect={false}>
                 <MenuButton
+                  className='nav-link'
                   as={Button}
                   rightIcon={<IoChevronDown />}
                   _hover={{ color: "suroilRed.600" }}
@@ -136,7 +144,7 @@ const Navbar = () => {
                   Contact
                 </MenuButton>
                 <MenuList zIndex='dropdown'>
-                  <MenuItem as={ReachLink} to='/nous-contacter' >
+                  <MenuItem as={ReachLink} to='/nous-contacter'>
                     Nous contacter
                   </MenuItem>
                 </MenuList>
@@ -202,7 +210,9 @@ const Navbar = () => {
                 </Menu>
               ) : (
                 <Link to='/auth' as={ReachLink}>
-                  <Button variant={"ghost"} color="suroilRed.primary">Se connecter</Button>
+                  <Button color='suroilRed.400' bgColor={"suroilWhite"} _hover={{bgColor: "suroilWhite" }}>
+                    Se connecter
+                  </Button>
                 </Link>
               )}
             </HStack>

@@ -1,0 +1,28 @@
+.nav-link {
+  color: black;
+  position: relative;
+  letter-spacing: 0.5px;
+  padding: 0 10px;
+}
+
+
+.nav-link:after {
+  content: "";
+  position: absolute;
+  background-color: #ED1C25;
+  height: 3px;
+  width: 0;
+  left: 0;
+  bottom: -5px;
+  transition: 0.3s;
+}
+
+.nav-link:hover{
+  color: #ED1C25;
+  text-decoration: dashed;
+}
+
+.nav-link:active::after,
+.nav-link:hover:after {
+    width: 100%;
+}

@@ -15,6 +15,8 @@ import {
   useColorModeValue,
   Link,
   AspectRatio,
+  Center,
+  Button,
 } from "@chakra-ui/react";
 import {
   IoAnalyticsSharp,
@@ -24,6 +26,7 @@ import {
   IoCarOutline,
 } from "react-icons/io5";
 import { motion } from "framer-motion";
+import Partners from "./Partners";
 
 const features = [
   {
@@ -84,11 +87,125 @@ const cardMotion = {
   },
 };
 
+const BestSellerCard = ({ img, category, name, price }) => {
+  return (
+    <Box
+      as={motion.div}
+      whileHover={{ scale: 1.1 }}
+      p={6}
+      w={"full"}
+      bg={useColorModeValue("white", "gray.800")}
+      boxShadow={"2xl"}
+      rounded={"lg"}
+      pos={"relative"}
+      zIndex={1}>
+      <Box
+        rounded={"lg"}
+        mt={-12}
+        pos={"relative"}
+        height={"230px"}
+        _after={{
+          transition: "all .3s ease",
+          content: '""',
+          w: "full",
+          h: "full",
+          pos: "absolute",
+          top: 5,
+          left: 0,
+          backgroundImage: `url(${img})`,
+          filter: "blur(15px)",
+          zIndex: -1,
+        }}
+        _groupHover={{
+          _after: {
+            filter: "blur(20px)",
+          },
+        }}>
+        <Image
+          rounded={"lg"}
+          height={230}
+          width={282}
+          objectFit={"cover"}
+          src={img}
+        />
+      </Box>
+      <Stack pt={10} align={"center"}>
+        <Text color={"gray.500"} fontSize={"sm"} textTransform={"uppercase"}>
+          {category}
+        </Text>
+        <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
+          {name}
+        </Heading>
+        <Text fontWeight={800} fontSize={"xl"}>
+          {price} DZD
+        </Text>
+        <VStack>
+          <Button>Ajouter au panier</Button>
+          <Button
+            variant={"link"}
+            color='suroilGreen.100'
+            _hover={{ color: "suroilGreen.200" }}
+            _active={{ color: "suroilGreen.100" }}>
+            Demander un devis
+          </Button>
+        </VStack>
+      </Stack>
+    </Box>
+  );
+};
+
+const CategoryCard = ({ img, category }) => {
+  return (
+    <Box
+      as={motion.div}
+      initial={cardMotion.offscreen}
+      whileInView={cardMotion.onscreen}
+      viewport={{ once: true }}
+      whileHover={{ scale: 1.1 }}
+      w={"full"}
+      alignItems='center'
+      justifyContent={"center"}>
+      <Flex
+        w={"full"}
+        h={"100vh"}
+        backgroundImage={`url(${img})`}
+        backgroundSize={"cover"}
+        backgroundPosition={"center"}
+        alignItems='center'
+        justifyContent={"center"}
+        align='center'
+        alignContent={"center"}
+        alignSelf='center'
+        justifyItems={"center"}
+        justify='center'
+        justifySelf={"center"}
+        borderRadius='xl'>
+        <Center
+          as={Heading}
+          w='80%'
+          h={"20%"}
+          textAlign='center'
+          color='suroilWhite'
+          border='3px solid #ED444B'
+          backgroundColor={"rgba(0,0,0, 0.4)"}
+          backdropFilter='blur(8px)'>
+          {category}
+        </Center>
+      </Flex>
+    </Box>
+  );
+};
+
 const Features = () => {
   return (
     <>
       {/* First Feature */}
-      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} px='10' py='10'>
+      <SimpleGrid
+        columns={{ base: 1, md: 2 }}
+        spacing={10}
+        px='10'
+        py='10'
+        fontFamily={"body"}>
         <Stack spacing={4}>
           <Text
             textTransform={"uppercase"}
@@ -98,8 +215,8 @@ const Features = () => {
             bg={"primary"}
             p={2}
             alignSelf={"flex-start"}
-            rounded={"md"}>
-            Qui sommes nous?
+            rounded={"xl"}>
+            Qui sommes nous
           </Text>
           <Heading>Fournisseur d'équipements de Nettoyage et de garage</Heading>
           <Text color={"gray.500"} fontSize={"lg"}>
@@ -120,18 +237,6 @@ const Features = () => {
             meilleure organisation. <br />
           </Text>
         </Stack>
-        {/* <Flex width={"100%"} border='2px solid red'>
-          <Image
-            rounded={"md"}
-            alt={"feature image"}
-            src={
-              "https://gachemicalsrls.com/img/intro-bg.png"
-              // "https://images.unsplash.com/photo-1554200876-56c2f25224fa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-            }
-            objectFit={"cover"}
-          />
-          
-        </Flex> */}
         <AspectRatio ratio={16 / 9}>
           <iframe
             src='https://www.youtube.com/embed/OYa_SQYZDj4'
@@ -142,7 +247,7 @@ const Features = () => {
       </SimpleGrid>
 
       {/* Second feature */}
-      <SimpleGrid
+      {/* <SimpleGrid
         as={motion.div}
         initial={cardMotion.offscreen}
         whileInView={cardMotion.onscreen}
@@ -191,22 +296,69 @@ const Features = () => {
             </Text>
           </Box>
         ))}
-      </SimpleGrid>
+      </SimpleGrid> */}
+      <VStack bg={"suroilRed.500"} py='10'>
+        <Heading color={"suroilWhite"}>Nos Bestsellers</Heading>
+        <SimpleGrid
+          as={motion.div}
+          initial={cardMotion.offscreen}
+          whileInView={cardMotion.onscreen}
+          viewport={{ once: true }}
+          columns={{ base: 1, md: 3 }}
+          spacing={{ base: 12, lg: 12 }}
+          placeItems='center'
+          alignItems={"start"}
+          px={{ base: 12, sm: 24, md: 6, lg: 24 }}
+          py='10'>
+          <BestSellerCard
+            img='https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
+            category='Categorie 1'
+            name={"Produit 1"}
+            price={4500}
+          />
+          <BestSellerCard
+            img='https://images.unsplash.com/photo-1550963295-019d8a8a61c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
+            category='Categorie 2'
+            name={"Produit 2"}
+            price={1600}
+          />
+          <BestSellerCard
+            img='https://images.unsplash.com/photo-1584792286782-a5dc95dc2250?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=386&q=80'
+            category='Categorie 3'
+            name={"Produit 3"}
+            price={2400}
+          />
+        </SimpleGrid>
+      </VStack>
 
       {/* Third feature */}
-      <Box
+      {/* <Box
         py={20}
         bg='red.800'
         bgGradient={"linear(to-r, red.700, red.900)"}
         color={"white"}>
         <Stack spacing={16} as={Container} maxW={"100%"} textAlign={"center"}>
-          {/* <Heading fontSize={"3xl"}> */}
-          <Heading fontSize={{ base: "2xl", sm: "3xl", md: "2lg", lg: "3xl", xl: "4xl", '2xl': "9xl" }} >
+          <Heading
+            fontSize={{
+              base: "2xl",
+              sm: "3xl",
+              md: "2lg",
+              lg: "3xl",
+              xl: "4xl",
+              "2xl": "9xl",
+            }}>
             Commercialisation des équipements professionnels <br /> de nettoyage
             et de garage
           </Heading>
           <Text
-            fontSize={{ base: "sm", sm: "3xl", md: "md", lg: "xl", xl: "xl", '2xl': "6xl" }}
+            fontSize={{
+              base: "sm",
+              sm: "3xl",
+              md: "md",
+              lg: "xl",
+              xl: "xl",
+              "2xl": "6xl",
+            }}
             textAlign={"justify"}>
             KDCM est Créée dans le but de répondre aux exigences de la clientèle
             en matière d'équipements de nettoyage et de graissage, elle s'est
@@ -218,31 +370,56 @@ const Features = () => {
             Bab Ezzouar.
           </Text>
         </Stack>
-      </Box>
+      </Box> */}
+
+      {/* Nos produits */}
+      <VStack>
+        <Heading>Nos produits</Heading>
+        <SimpleGrid
+          as={motion.div}
+          initial={cardMotion.offscreen}
+          whileInView={cardMotion.onscreen}
+          viewport={{ once: true }}
+          columns={{ base: 1, md: 2 }}
+          spacing={{ base: 12, lg: 12 }}
+          w='100%'
+          placeItems='center'
+          alignItems={"start"}
+          px={{ base: 12, sm: 24, md: 6, lg: 24 }}
+          py='10'>
+          <CategoryCard
+            category={"Nettoyage"}
+            img='https://images.unsplash.com/photo-1580256081112-e49377338b7f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
+          />
+          <CategoryCard
+            category={"Garage"}
+            img='https://images.unsplash.com/photo-1632685062337-095b722134ca?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+          />
+          <CategoryCard
+            category={"Station de graissage mobile"}
+            img='https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fwww.ravasini.fr%2Fwp-content%2Fuploads%2F2015%2F02%2FLUBRI_03.jpg&sp=1674838980Te1170bd5f9ff45659ae4a5f365680edaba224db92f88661dc144ec5c5bafff5c'
+          />
+          <CategoryCard
+            category={"Portique et tunnel de lavage automatique"}
+            img='https://www.tecnolec-lavages.com/img/photo_produit-8-13-o.jpg'
+          />
+        </SimpleGrid>
+      </VStack>
 
       {/* Fourth Feature */}
-      <Container
+      {/* <VStack
         as={motion.div}
         initial={cardMotion.offscreen}
         whileInView={cardMotion.onscreen}
         viewport={{ once: true }}
-        maxW={"80%"}
-        py={20}
-        px={{ base: 5, md: 10 }}>
+        py='10'
+        px={10}>
+        <Heading>x</Heading>
         <SimpleGrid
           columns={{ base: 1, md: 2, lg: 2 }}
           placeItems='center'
           spacing={20}>
           {features.map((feature, index) => (
-            // <HStack key={feature.id} align={"center"}>
-            //   <Box>
-            //     <Icon as={feature.icon} boxSize={14} />
-            //   </Box>
-            //   <VStack align={"start"}>
-            //     <Text fontWeight={600}>{feature.title}</Text>
-            //     <Text color={"gray.600"}>{feature.text}</Text>
-            //   </VStack>
-            // </HStack>
             <Box
               as={motion.div}
               whileHover={{ scale: 1.1 }}
@@ -256,7 +433,8 @@ const Features = () => {
             </Box>
           ))}
         </SimpleGrid>
-      </Container>
+      </VStack> */}
+      <Partners />
     </>
   );
 };
