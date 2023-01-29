@@ -403,7 +403,7 @@ const Features = () => {
           />
           <CategoryCard
             category={"Station de graissage mobile"}
-            img='https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fwww.ravasini.fr%2Fwp-content%2Fuploads%2F2015%2F02%2FLUBRI_03.jpg&sp=1674838980Te1170bd5f9ff45659ae4a5f365680edaba224db92f88661dc144ec5c5bafff5c'
+            img='https://www.ravasini.fr/wp-content/uploads/2015/02/LUBRI_03.jpg'
           />
           <CategoryCard
             category={"Portique et tunnel de lavage automatique"}
